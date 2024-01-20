@@ -219,7 +219,7 @@ Remove comment from the line located right below the following comment: `Uncomme
 ### Bootloader setup
 
 #### Unified Kernel Images
-(Preferable when not doing multi-boot)
+(Preferable when doing server installs)
 
 Create the `/etc/cmdline.d` directory:
 ```sh
