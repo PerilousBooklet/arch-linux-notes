@@ -64,7 +64,7 @@ fdisk -l
 
 Create two partitions:
 1. EFI partition: 1024MB
-2. root partition: remaining space
+2. Root partition: remaining space
 
 Run the partitioning program:
 ```sh
@@ -290,7 +290,7 @@ Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /
 
 <!-- LUKS setup (optional) -->
 
-Regenerate the `initramfs` for all installed kernel:
+Regenerate the `initramfs` for all installed kernels:
 (In this case `esp` is `/boot/efi`)
 ```sh
 mkdir -p esp/EFI/Linux
@@ -309,11 +309,7 @@ efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux-lts" --
 
 ##### BIOS
 ```sh
-sudo pacman -S grub
-
-sudo pacman -S efibootmgr
-
-sudo pacman -S os-prober
+sudo pacman -S grub efibootmgr os-prober
 
 grub-install --target=i386-pc /dev/sda
 
