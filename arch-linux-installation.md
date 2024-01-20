@@ -169,15 +169,15 @@ Write  into /etc/hosts the following:
 
 ### Set up networking tools
 ```sh
-pacman -S net-tools
+sudo pacman -S net-tools
 
-pacman -S dhcpcd
+sudo pacman -S dhcpcd
 
 systemctl enable dhcpcd
 
 dhcpcd netctl
 
-pacman -S iwd wpa_supplicant wireless_tools dialog iw
+sudo pacman -S iwd wpa_supplicant wireless_tools dialog iw
 
 systemctl enable iwd
 ```
@@ -186,7 +186,7 @@ Install and enable NetworkManager:
 ```sh
 sudo -s
 
-pacman -S networkmanager
+sudo pacman -S networkmanager
 
 systemctl enable NetworkManager
 ```
@@ -309,11 +309,11 @@ efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux-lts" --
 
 ##### BIOS
 ```sh
-pacman -S grub
+sudo pacman -S grub
 
-pacman -S efibootmgr
+sudo pacman -S efibootmgr
 
-pacman -S os-prober
+sudo pacman -S os-prober
 
 grub-install --target=i386-pc /dev/sda
 
@@ -322,7 +322,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ##### UEFI
 ```sh
-pacman -S grub efibootmgr os-prober
+sudo pacman -S grub efibootmgr os-prober
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader=GRUB
 
@@ -332,12 +332,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ### Microcode software installation
 For Intel:
 ```sh
-pacman -S intel-ucode
+sudo pacman -S intel-ucode
 ```
 
 For AMD:
 ```sh
-pacman -S amd-ucode
+sudo pacman -S amd-ucode
 ```
 
 Refresh bootloader configuration to automatically enable microcode updates:
@@ -349,12 +349,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 X11:
 ```sh
-pacman -S xorg xorg-xinit arandr
+sudo pacman -S xorg xorg-xinit arandr
 ```
 
 Wayland:
 ```sh
-pacman -S wayland
+sudo pacman -S wayland
 ```
 
 ### Configure graphics drivers
@@ -365,46 +365,46 @@ vim /etc/pacman.conf
 
 Refresh repositories:
 ```sh
-pacman -Syy
+sudo pacman -Syy
 ```
 
 Install the appropriate graphics drivers and tools (see the arch wiki for package names)
 
 Intel (for integrated GPUs):
 ```sh
-pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
+sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
 ```
 
 Intel (for dedicated GPUs):
 ```sh
-pacman -S ?
+sudo pacman -S ?
 ```
 
 AMD (for integrated GPUs):
 ```sh
-pacman -S vulkan-radeon amdvlk
+sudo pacman -S vulkan-radeon amdvlk
 ```
 
 AMD (for dedicated GPUs):
 ```sh
-pacman -S mesa xf86-video-amdgpu libva-mesa-driver mesa-vdpau vulkan-radeon amdvlk radeontop corectrl
+sudo pacman -S mesa xf86-video-amdgpu libva-mesa-driver mesa-vdpau vulkan-radeon amdvlk radeontop corectrl
 ```
 
 NVIDIA
 ```sh
-pacman -S nvidia nvidia-lts nvidia-settings
+sudo pacman -S nvidia nvidia-lts nvidia-settings
 ```
 
 ### Install audio server
 Pulseaudio:
 ```sh
-pacman -S pulseaudio pulseaudio-alsa pamixer pavucontrol alsa-utils
+sudo pacman -S pulseaudio pulseaudio-alsa pamixer pavucontrol alsa-utils
 ```
 
 Pipewire:
 ```sh
-pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber wireplumber-doc qpwgraph alsa-utils
-pacman -S pamixer pavucontrol
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber wireplumber-doc qpwgraph alsa-utils
+sudo pacman -S pamixer pavucontrol
 ```
 
 ### Exit chroot
@@ -435,7 +435,7 @@ nmcli device wifi list
 ### AUR Helper
 paru:
 ```sh
-sudo pacman -S git
+sudo sudo pacman -S git
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
@@ -470,7 +470,7 @@ NONE
 
 ### Privileges and Authentication Management
 ```sh
-pacman -S polkit lxsession
+sudo pacman -S polkit lxsession
 touch ~/.xprofile
 echo "lxsession &" > ~/.xprofile
 ```
@@ -478,7 +478,7 @@ echo "lxsession &" > ~/.xprofile
 ### Desktop Environment Setup
 cinnamon:
 ```sh
-pacman -S cinnamon papirus-icon-theme
+sudo pacman -S cinnamon papirus-icon-theme
 paru -S mint-themes papirus-folders
 touch ~/.xinit
 echo 'exec cinnamon-session' > ~/.xinit
@@ -492,12 +492,12 @@ fi
 ### Window Manager Setup
 bspwm(x11):
 ```sh
-pacman -S bspwm sxhkd rofi polybar feh dunst picom i3lock imagemagick scrot python-pywal
+sudo pacman -S bspwm sxhkd rofi polybar feh dunst picom i3lock imagemagick scrot python-pywal
 ```
 
 river(wayland):
 ```sh
-pacman -S river waybar ?
+sudo pacman -S river waybar ?
 ```
 
 ### X configuration
@@ -523,7 +523,7 @@ Enable the touchpad:
 
 Install the synaptics driver:
 ```sh
-pacman -S xf86-input-synaptics
+sudo pacman -S xf86-input-synaptics
 ```
 
 Create the configuration file:
@@ -558,13 +558,13 @@ EndSection
 
 Power management configuration:
 ```sh
-pacman -S power-profiles-daemon
+sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 ```
 
 Backlight configuration (Intel only):
 ```sh
-pacman -S xorg-xbacklight
+sudo pacman -S xorg-xbacklight
 ```
 
 ### Ryzen 5 1600 sudden-crash/freeze work-around
@@ -580,7 +580,7 @@ Set the mouse cursor theme with lxappearance.
 
 Install a package to enable correct rendering of Gruvbox GTK theme for Cinnamon:
 ```sh
-pacman -S gtk-engine-murrine
+sudo pacman -S gtk-engine-murrine
 ```
 
 #### X - Force cursor theme in bspwm root window
@@ -597,7 +597,7 @@ xsetroot -cursor_name left_ptr
 #### QT
 Install the necessary packages:
 ```sh
-pacman -S qt5-base qt5-doc adwaita-qt5 qt6-base qt6-doc adwaita-qt6 qtcurve kvantum qt5ct
+sudo pacman -S qt5-base qt5-doc adwaita-qt5 qt6-base qt6-doc adwaita-qt6 qtcurve kvantum qt5ct
 paru -S nordic-theme
 ```
 
@@ -616,7 +616,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 #### GTK
 Install the necessary packages:
 ```sh
-sudo pacman -S gtk3 gnome-themes-extra dconf-editor
+sudo sudo pacman -S gtk3 gnome-themes-extra dconf-editor
 ```
 
 Setup the configuration files:
@@ -641,20 +641,20 @@ Install qemu with virt-manager:
 
 Install all the packages needed to run KVM:
 ```sh
-pacman -S qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
-pacman -S ebtables iptables-nft
+sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
+sudo pacman -S ebtables iptables-nft
 ```
 
 N.B.: iptables-nft is expected to replace iptables.
 
 Install a set of tools used to access and modify virtual machine (VM) disk images:
 ```sh
-pacman -S libguestfs
+sudo pacman -S libguestfs
 ```
 
 Install a package to support virtualization of TPL 2.0 for Windows 11:
 ```sh
-pacman -S swtpm
+sudo pacman -S swtpm
 ```
 
 Start KVM libvirt service:
@@ -698,13 +698,13 @@ systemctl restart libvirtd.service
 
 Enable UEFI support for KVM virtual machines:
 ```sh
-pacman -S edk2-ovmf
+sudo pacman -S edk2-ovmf
 ```
 
 ### Setup printer
 Install CUPS:
 ```sh
-pacman -S cups
+sudo pacman -S cups
 ```
 
 Enable cups:
@@ -719,17 +719,17 @@ usermod -aG lp raffaele
 
 Install a GUI printer manager:
 ```sh
-pacman -S system-config-printer
+sudo pacman -S system-config-printer
 ```
 
 Install specific printer drivers (for most HP printers):
 ```sh
-pacman -S hplip
+sudo pacman -S hplip
 ```
 
 Install general printer drivers:
 ```sh
-pacman -S gutenprint foomatic-db-gutenprint-ppds
+sudo pacman -S gutenprint foomatic-db-gutenprint-ppds
 ```
 
 Search for the printer's IP address.
@@ -743,7 +743,7 @@ Follow the menu.
 ### Setup local file sync
 Install syncthing:
 ```sh
-pacman -S syncthing
+sudo pacman -S syncthing
 ```
 
 Start/enable syncthing:
@@ -757,7 +757,7 @@ Setup device sync from web interface.
 ### Setup UVC Webcam/Camera
 Install video4linux:
 ```sh
-pacman -S v4l-utils
+sudo pacman -S v4l-utils
 ```
 
 Check devices:
@@ -768,7 +768,7 @@ v4l2-ctl --list-devices
 ### Setup Wacom Tablet
 Install drivers:
 ```sh
-pacman -S xf86-input-wacom
+sudo pacman -S xf86-input-wacom
 ```
 
 Search for wacom tablet name:
@@ -792,7 +792,7 @@ xsetwacom --set "Wacom One Pen Display 13 Pen stylus" MapToOutput 1920x1080+...+
 ### Setup bluetooth
 Installing packages:
 ```sh
-pacman -S bluez bluez-plugins bluez-utils blueman
+sudo pacman -S bluez bluez-plugins bluez-utils blueman
 ```
 
 Check devices:
@@ -813,7 +813,7 @@ systemctl start bluetooth.service
 
 Install support for pulseaudio with bluetooth:
 ```sh
-pacman -S pulseaudio-bluetooth
+sudo pacman -S pulseaudio-bluetooth
 ```
 
 ### Setup pinetime companion app
@@ -826,7 +826,7 @@ paru -S itd-git
 
 #### Malware detection:
 ```sh
-pacman -S clamav
+sudo pacman -S clamav
 ```
 
 #### Firewalls:
@@ -837,8 +837,8 @@ iptales:
 
 ufw:
 ```sh
-pacman -S ufw
-pacman -S iptables
+sudo pacman -S ufw
+sudo pacman -S iptables
 reboot
 systemctl enable ufw.service
 systemctl start ufw.service
@@ -854,14 +854,14 @@ ufw status
 #### Mandatory access control
 firejail (user-space level):
 ```sh
-pacman -S firejail fire-tools
+sudo pacman -S firejail fire-tools
 sudo firecfg
 firecfg --clean #(?)
 ```
 
 apparmor (kernel-space level):
 ```sh
-pacman -S apparmor
+sudo pacman -S apparmor
 systemctl enable apparmor.service
 aa-enabled
 aa-status
@@ -869,7 +869,7 @@ aa-status
 
 #### Shared devices
 ```sh
-pacman -S fail2ban
+sudo pacman -S fail2ban
 ```
 
 ### Backup
