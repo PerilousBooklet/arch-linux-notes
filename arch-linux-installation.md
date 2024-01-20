@@ -342,7 +342,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Install display server
-
 X11:
 ```sh
 sudo pacman -S xorg xorg-xinit arandr
@@ -391,6 +390,17 @@ NVIDIA
 sudo pacman -S nvidia nvidia-lts nvidia-settings
 ```
 
+### Install a Desktop Environment or a Window Manager
+Cinnamon:
+```sh
+sudo pacman -S cinnamon
+```
+
+XFCE:
+```sh
+sudo pacman -S xfce4
+```
+
 ### Install audio server
 Pulseaudio:
 ```sh
@@ -421,7 +431,7 @@ Optional: if on laptop, use this networkmanager script to connect to wifi:
 nmcli device wifi connect "$1" password "$2"
 ```
 
-The first variable stands for `wifi` name and the second for the `relative password`.
+The first variable stands for `wifi` name and the second for the `password`.
 
 To find the wifi name:
 ```sh
@@ -462,7 +472,10 @@ uncomment the following:
 ```
 
 ### Login Manager
-NONE
+LightDM:
+```sh
+sudo pacman -S lightdm lightdm-gtk-greeter
+```
 
 ### Privileges and Authentication Management
 ```sh
