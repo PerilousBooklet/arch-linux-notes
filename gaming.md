@@ -6,7 +6,7 @@
 sudo pacman -S steam libappindicator-gtk2 lib32-libappindicator-gtk2
 ```
 
-## GOG/Epic Games
+## GOG/Epic/Amazon Prime
 ```sh
 paru -S heroic-games-launcher-bin
 ```
