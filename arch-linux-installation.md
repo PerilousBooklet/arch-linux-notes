@@ -401,6 +401,12 @@ XFCE:
 sudo pacman -S xfce4
 ```
 
+### Login Manager
+LightDM:
+```sh
+sudo pacman -S lightdm lightdm-gtk-greeter
+```
+
 ### Install audio server
 Pulseaudio:
 ```sh
@@ -469,12 +475,6 @@ vim /etc/paru.conf
 uncomment the following:
 ```
 #NewsOnUpgrade
-```
-
-### Login Manager
-LightDM:
-```sh
-sudo pacman -S lightdm lightdm-gtk-greeter
 ```
 
 ### Privileges and Authentication Management
