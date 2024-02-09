@@ -1,2 +1,2 @@
 # Arch Linux Notes
-My notes on Arch Linux.
+My notes on using Arch Linux.

@@ -48,17 +48,17 @@ git fetch package-name
 ```
 
 Create PKGBUILD:
-```
+```bash
 sudo cp -v /usr/share/pacman/PKGBUILD.proto ./PKGBUILD
 ```
 
 Generate .SRCINFO:
-```
+```bash
 makepkg --printsrcinfo > .SRCINFO
 ```
 
 Push first commit:
-```
+```bash
 git add .
 git commit -m "Initial commit."
 git push origin master
@@ -70,3 +70,10 @@ makepkg -si
 ```
 
 (optional: clean cache with `makepkg --clean`)
+
+## Update package
+
+Update checksums:
+```bash
+updpkgsums
+```

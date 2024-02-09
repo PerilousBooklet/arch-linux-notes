@@ -1,5 +1,5 @@
 # How to setup games on Arch Linux
-(Note: I only use arch packages, hence the absence of flatpak/appimage installation instructions)
+(Note: I only use arch packages, hence the absence of other packageing formats installation instructions)
 
 ## Steam
 ```sh
