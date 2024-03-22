@@ -18,7 +18,7 @@ Malware scanning:
 sudo pacman -S clamav
 ```
 
-Log scan/IP ban:
+Intrusion prevention:
 ```sh
 sudo pacman -S fail2ban
 ```

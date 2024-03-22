@@ -1,9 +1,28 @@
 # How to setup games on Arch Linux
 (Note: I only use arch packages, hence the absence of other packageing formats installation instructions)
 
-## Steam
+## Open Source Games
 ```sh
-sudo pacman -S steam libappindicator-gtk2 lib32-libappindicator-gtk2
+sudo pacman -S 0ad
+sudo pacman -S xonotic
+sudo pacman -S supertuxkart
+paru -S mindustry-bin
+paru -S airshipper # For Veloren
+sudo pacman -S minetest
+sudo pacman -S springlobby # For Spring: 1944 and Spring: Zero K
+sudo pacman -S warzone2100
+sudo pacman -S openttd openttd-gfx openttd-sfx
+sudo pacman -S wesnoth
+```
+
+## Minecraft
+```sh
+paru -S prismlauncher-qt5-bin nbtexplorer-bin
+```
+
+## RPCS3
+```sh
+paru -S rpcs3-bin rpcs3-udev
 ```
 
 ## GOG/Epic/Amazon Prime
@@ -66,25 +85,7 @@ sudo pacman -S mangohud
 paru -S goverlay-bin
 ```
 
-## Minecraft
+## Steam
 ```sh
-paru -S prismlauncher-qt5-bin nbtexplorer-bin
-```
-
-## RPCS3
-```sh
-paru -S rpcs3-bin rpcs3-udev
-```
-
-## Open Source Games
-```sh
-sudo pacman -S 0ad
-sudo pacman -S minetest
-sudo pacman -S supertuxkart 
-sudo pacman -S xonotic
-sudo pacman -S openttd openttd-opengfx openttd-opensfx
-paru -S airshipper # Veloren
-paru -S flightgear
-paru -S zero-k
-sudo pacman -S springlobby # Spring: 1944
+sudo pacman -S steam libappindicator-gtk2 lib32-libappindicator-gtk2
 ```

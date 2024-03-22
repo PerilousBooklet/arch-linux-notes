@@ -218,6 +218,27 @@ Remove comment from the line located right below the following comment: `Uncomme
 
 ### Bootloader setup
 
+#### GRUB
+(Useful to easily multi-boot different operating systems.)
+
+##### BIOS
+```sh
+sudo pacman -S grub efibootmgr os-prober
+
+grub-install --target=i386-pc /dev/sda
+
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+##### UEFI
+```sh
+sudo pacman -S grub efibootmgr os-prober
+
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader=GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 #### Unified Kernel Images
 (Preferable when doing server installs)
 
@@ -304,26 +325,18 @@ efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux-lts" --
 ```
 <!-- Add a boot splash image -->
 
-#### GRUB
-(Useful to easily multi-boot different operating systems.)
+### Systemd-boot
 
-##### BIOS
+#### UEFI
+
+Install systemd-boot to the ESP:
 ```sh
-sudo pacman -S grub efibootmgr os-prober
-
-grub-install --target=i386-pc /dev/sda
-
-grub-mkconfig -o /boot/grub/grub.cfg
+bootctl --esp-path=/boot/efi install
 ```
 
-##### UEFI
-```sh
-sudo pacman -S grub efibootmgr os-prober
+Configure systemd-boot:
 
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader=GRUB
-
-grub-mkconfig -o /boot/grub/grub.cfg
-```
+Open `esp/loader/loader.conf` and add `default @saved` to it.
 
 ### Microcode software installation
 For Intel:

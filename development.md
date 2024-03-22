@@ -3,71 +3,86 @@
 ## Software Development
 
 ### C/C++
-```bash
+```sh
 sudo pacman -S gcc
 ```
 
 ### Java
 Install the latest Java Development Kit:
-```bash
+```sh
 sudo pacman -S jdk-openjdk
 ```
 
 Set default system-wide java version:
-```bash
+```sh
 sudo archlinux-java set java-20-openjdk # for java 20
 ```
 
 Check installed java versions:
-```bash
+```sh
 archlinux-java status
 ```
 
 ### Python
-```bash
+```sh
 sudo pacman -S python
 ```
 
 ### Lua
-```bash
+```sh
 sudo pacman -S lua
 ```
 
 ### LaTex
-```bash
+```sh
 sudo pacman -S texlive-most texlive-lang texstudio
 ```
 
+### Ruby
+
+https://wiki.archlinux.org/title/Ruby
+https://wiki.archlinux.org/title/RVM
+
+### OCaml
+`sudo pacman -S ocaml opam`
+`opam init`
+`opam install dune`
+
 ### HTML/CSS/Javascript/PHP
-```bash
+```sh
 ?
 ```
 
 ### Arduino
-```bash
+```sh
 paru -S arduino-ide-bin
 ```
 
 ### OpenSCAD
-```bash
+```sh
 sudo pacman -S openscad
 ```
 
 ### R
-```bash
+```sh
 sudo pacman -S r gcc-fortran
 paru -S rstudio-desktop-bin
 ```
 
+### Haskell
+```sh
+sudo pacman -S ghc cabal-install
+```
+
 ### Matlab
-```bash
+```sh
 paru -S matlab
 ```
 
 ### PostgreSQL
 
 Install the following:
-```bash
+```sh
 sudo pacman -S postgresql
 sudo pacman -S dbeaver
 ```
@@ -76,53 +91,58 @@ Setup the database, follow the instructions at:
 https://wiki.archlinux.org/title/PostgreSQL
 
 ### TTF/OTF fonts dev
-```bash
+```sh
 sudo pacman -S birdfont gucharmap fontforge
 ```
 
 ### Minecraft mods
-```bash
+```sh
 sudo pacman -S jdk8-openjdk jdk-openjdk
 paru -S blockbench-bin
 ```
 
 ### Minetest mods
-```bash
+```sh
 sudo pacman -S minetest
 ```
 
 ### Godot game development
-```bash
+```sh
 sudo pacman -S godot
 paru -S godot3-bin godot-voxel
 ```
 
+### Renpy visual novel game development
+```sh
+paru -S renpy
+```
+
 ### Arch packages
-```bash
+```sh
 sudo pacman -S dev-tools namcap
 ```
 
 ### Static websites
 Hugo:
-```bash
+```sh
 sudo pacman -S go hugo
 ```
 
 Jekyll:
-```bash
+```sh
 sudo pacman -S ruby rubygems gcc make
 gem install jekyll bundler
 ```
 
 Sphynx:
-```bash
+```sh
 ?
 ```
 
 ## Firmware Development
 
 ### Flashing ROMs
-```bash
+```sh
 sudo pacman -S flashrom
 ```
 
@@ -147,7 +167,7 @@ sudo pacman -S openscad
 
 ### Chemistry
 Avogadro 2:
-```bash
+```sh
 paru -S avogadro2
 ```
 
