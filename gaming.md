@@ -79,10 +79,11 @@ sudo pacman -S --needed wine-staging \
                         gst-plugins-base-libs \
                         lib32-gst-plugins-base-libs \
                         vulkan-icd-loader \
-                        lib32-vulkan-icd-loader
+                        lib32-vulkan-icd-loader \
+                        vkd3d \
+                        mangohud \
+                        goverlay
 paru -S protonup-qt protontricks
-sudo pacman -S mangohud
-paru -S goverlay-bin
 ```
 
 ## Steam

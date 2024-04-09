@@ -1,3 +1,9 @@
+### How to fix Avatar: Frontiers of Pandora on Heroic Games Launcher (Epic) not working because of incompatible DirectX version
+Use Winetricks to install the appropriate DirectX version:
+```sh
+WINEPREFIX="/home/raffaele/.games/prefixes/Avatar Frontiers of Pandora" winetricks ?
+```
+
 ### How to solve the problem where paru appears to do nothing (no stdout messages) after being evoked
 ?
 
@@ -12,7 +18,7 @@ Then reboot.
 ### How to fix Roboquest (installed on heroic games launcher from GOG.com) not working because of missing Microsoft visual C++ libraries
 Use winetricks to install the Microsoft visual C++ 2015-2019 runtime:
 ```sh
-WINEPREFIX=/home/raffaele/.games/heroic-launcher/prefixes/Roboquest winetricks vcrun2019
+WINEPREFIX=/home/raffaele/.games/prefixes/Roboquest winetricks vcrun2019
 ```
 
 ### How to fix plank not starting after disabling lightdm and using startx to boot X

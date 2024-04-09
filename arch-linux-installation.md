@@ -852,7 +852,7 @@ sudo pacman -S clamav
 ```
 
 #### Firewalls:
-iptales:
+iptables:
 ```sh
 ?
 ```
