@@ -2,9 +2,12 @@
 
 ## Software Development
 
+### Version Control System
+`sudo pacman -Syu git git-lfs`
+
 ### C/C++
 ```sh
-sudo pacman -S gcc
+sudo pacman -S gcc make cmake ninja
 ```
 
 ### Java
@@ -25,7 +28,7 @@ archlinux-java status
 
 ### Python
 ```sh
-sudo pacman -S python
+sudo pacman -S python python-pipx
 ```
 
 ### Lua
@@ -38,6 +41,34 @@ sudo pacman -S lua
 sudo pacman -S texlive-most texlive-lang texstudio
 ```
 
+### Lilypond
+
+`?`
+
+### R
+```sh
+sudo pacman -S r gcc-fortran
+paru -S rstudio-desktop-bin
+```
+
+### HTML/CSS/Javascript/PHP
+```sh
+?
+```
+
+### Dart
+
+`sudo pacman -S dart`
+
+### Flutter
+
+https://docs.flutter.dev/get-started/install/linux/desktop?tab=download
+
+Setup the Android dev environment without `android-studio`:
+```sh
+paru -S android-emulator android-sdk android-platform android-x86-64-system-image
+```
+
 ### Ruby
 
 https://wiki.archlinux.org/title/Ruby
@@ -48,11 +79,6 @@ https://wiki.archlinux.org/title/RVM
 `opam init`
 `opam install dune`
 
-### HTML/CSS/Javascript/PHP
-```sh
-?
-```
-
 ### Arduino
 ```sh
 paru -S arduino-ide-bin
@@ -61,12 +87,6 @@ paru -S arduino-ide-bin
 ### OpenSCAD
 ```sh
 sudo pacman -S openscad
-```
-
-### R
-```sh
-sudo pacman -S r gcc-fortran
-paru -S rstudio-desktop-bin
 ```
 
 ### Haskell
@@ -98,7 +118,7 @@ sudo pacman -S birdfont gucharmap fontforge
 ### Minecraft mods
 ```sh
 sudo pacman -S jdk8-openjdk jdk-openjdk
-paru -S blockbench-bin
+paru -S blockbench-bin nbtexplorer fernflower-git
 ```
 
 ### Minetest mods
@@ -112,7 +132,7 @@ sudo pacman -S godot
 paru -S godot3-bin godot-voxel
 ```
 
-### Renpy visual novel game development
+### Renpy
 ```sh
 paru -S renpy
 ```
@@ -139,35 +159,25 @@ Sphynx:
 ?
 ```
 
-## Firmware Development
-
 ### Flashing ROMs
 ```sh
 sudo pacman -S flashrom
 ```
 
 ## Hardware development
-KiCAD:
+
 ```sh
 sudo pacman -S kicad
 ```
 
 ## Product design
-FreeCAD:
+
 ```sh
 sudo pacman -S freecad
 ```
 
-OpenSCAD:
+
 ```sh
 sudo pacman -S openscad
-```
-
-## Science
-
-### Chemistry
-Avogadro 2:
-```sh
-paru -S avogadro2
 ```
 

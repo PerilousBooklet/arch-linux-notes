@@ -403,6 +403,12 @@ NVIDIA
 sudo pacman -S nvidia nvidia-lts nvidia-settings
 ```
 
+or
+
+```sh
+sudo pacman -S nvidia-dkms nvidia-settings linux-headers
+```
+
 ### Install a Desktop Environment or a Window Manager
 Cinnamon:
 ```sh
@@ -428,8 +434,7 @@ sudo pacman -S pulseaudio pulseaudio-alsa pamixer pavucontrol alsa-utils
 
 Pipewire:
 ```sh
-sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber wireplumber-doc qpwgraph alsa-utils
-sudo pacman -S pamixer pavucontrol
+sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber wireplumber-docs qpwgraph alsa-utils pamixer pavucontrol
 ```
 
 ### Exit chroot

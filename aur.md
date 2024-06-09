@@ -3,7 +3,7 @@
 ## Prepare SSH keys
 
 Open ~/.ssh/config:
-```bash
+```sh
 nvim ~/.ssh/config
 ```
 
@@ -15,7 +15,7 @@ Host aur.archlinux.org
 ```
 
 Generate SSH keys:
-```bash
+```sh
 cd ~/.ssh/
 ssh-keygen -t ed25519 -f ~/.ssh/aur
 ```
@@ -25,47 +25,47 @@ Go to your AUR profile, "My Account" page and add the public key with the approp
 ## Adopt an existing orphaned package
 
 Clone package:
-```bash
+```sh
 git clone ssh://aur@aur.archlinux.org/package_name.git
 ```
 
 ## Create a new AUR package from scratch
 
 Clone empty AUR repository, but with your package's desired name:
-```bash
+```sh
 git -c init.defaultbranch=master clone ssh://aur@aur.archlinux.org/package-name.git ./package-name
 ```
 
 Add an AUR remote:
-```bash
+```sh
 cd ./package-name
 git remote add label ssh://aur@aur.archlinux.org/package-name.git
 ```
 
 Fetch the remote for AUR initialization:
-```bash
+```sh
 git fetch package-name
 ```
 
 Create PKGBUILD:
-```bash
+```sh
 sudo cp -v /usr/share/pacman/PKGBUILD.proto ./PKGBUILD
 ```
 
 Generate .SRCINFO:
-```bash
+```sh
 makepkg --printsrcinfo > .SRCINFO
 ```
 
 Push first commit:
-```bash
+```sh
 git add .
 git commit -m "Initial commit."
 git push origin master
 ```
 
 Create package:
-```bash
+```sh
 makepkg -si
 ```
 
@@ -73,7 +73,16 @@ makepkg -si
 
 ## Update package
 
+Make the required modifications to the required files.
+
 Update checksums:
-```bash
-updpkgsums
+```sh
+updpkgsums PKGBUILD
+```
+
+Add, commit and push the changes to the AUR (example: `godot-voxel-bin`):
+```sh
+git add .
+git commit -m "Updated for Godot x.x.x and Voxel Tools x.x.x"
+git push
 ```

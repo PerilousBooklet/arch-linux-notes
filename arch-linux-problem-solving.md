@@ -1,8 +1,5 @@
 ### How to fix Avatar: Frontiers of Pandora on Heroic Games Launcher (Epic) not working because of incompatible DirectX version
-Use Winetricks to install the appropriate DirectX version:
-```sh
-WINEPREFIX="/home/raffaele/.games/prefixes/Avatar Frontiers of Pandora" winetricks ?
-```
+?
 
 ### How to solve the problem where paru appears to do nothing (no stdout messages) after being evoked
 ?
