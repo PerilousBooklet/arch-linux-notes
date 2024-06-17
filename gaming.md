@@ -3,16 +3,8 @@
 
 ## Open Source Games
 ```sh
-sudo pacman -S 0ad
-sudo pacman -S xonotic
-sudo pacman -S supertuxkart
-paru -S mindustry-bin
-paru -S airshipper # For Veloren
-sudo pacman -S minetest
-sudo pacman -S springlobby # For Spring: 1944 and Spring: Zero K
-sudo pacman -S warzone2100
-sudo pacman -S openttd openttd-gfx openttd-sfx
-sudo pacman -S wesnoth
+sudo pacman -S 0ad xonotic supertuxkart minetest warzone2100 openttd openttd-gfx openttd-sfx wesnoth springlobby shattered-pixel-dungeon astromenace endless-sky endless-sky-high-dpi pioneer
+paru -S mindustry-bin airshipper
 ```
 
 ## Minecraft
