@@ -6,7 +6,7 @@
 
 Install plasma:
 ```sh
-pacman -S xorg xorg-xinit arandr plasma-desktop alacritty
+pacman -Syu xorg xorg-xinit arandr plasma-desktop alacritty
 ```
 
 Configure startx:

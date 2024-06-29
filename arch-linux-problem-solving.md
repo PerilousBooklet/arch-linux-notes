@@ -147,5 +147,5 @@ nmcli device wifi list
 
 ### How to solve "Paru is broken after update: error while loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory"
 ```sh
-sudo pacman -S openssl-1.1
+sudo pacman -Syu openssl-1.1
 ```

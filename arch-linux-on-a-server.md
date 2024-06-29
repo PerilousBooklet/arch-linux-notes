@@ -10,31 +10,31 @@
 ## Security
 Firewall:
 ```sh
-sudo pacman -S ufw
+sudo pacman -Syu ufw
 ```
 
 Malware scanning:
 ```sh
-sudo pacman -S clamav
+sudo pacman -Syu clamav
 ```
 
 Intrusion prevention:
 ```sh
-sudo pacman -S fail2ban
+sudo pacman -Syu fail2ban
 ```
 
 User-space mandatory access control:
 ```sh
-sudo pacman -S firejail
+sudo pacman -Syu firejail
 ```
 
 Kernel-space mandatory access control:
 ```sh
-sudo pacman -S apparmor
+sudo pacman -Syu apparmor
 ```
 
 ## Backup
 Semi-professional solution:
 ```sh
-sudo pacman -S borg
+sudo pacman -Syu borg
 ```
