@@ -537,4 +537,12 @@ Which is even easier for beginners.
 
 ## 26
 
-...
+"Arch is the easiest distro for power users" is something i've been saying for ages.
+
+Especially if you come from a dev background the aur + the wiki make it so much simpler compared to any of the usual "noob" distros.
+
+Made even simpler if you go with a distro like endeavouros which is like a intro to arch basically with some of the same defaults everyone puts on a desktop arch system anyways.
+
+## 27
+
+

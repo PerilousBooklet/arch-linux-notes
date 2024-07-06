@@ -589,9 +589,9 @@ sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 ```
 
-Backlight configuration (Intel only):
+Backlight configuration:
 ```sh
-sudo pacman -S xorg-xbacklight
+sudo pacman -S acpilight
 ```
 
 ### Ryzen 5 1600 sudden-crash/freeze work-around
