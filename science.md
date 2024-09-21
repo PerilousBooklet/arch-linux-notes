@@ -9,3 +9,9 @@ paru -Syu avogadro2
 ```sh
 paru -Syu genometools
 ```
+
+## Geology
+
+```sh
+sudo pacman -S qgis
+```

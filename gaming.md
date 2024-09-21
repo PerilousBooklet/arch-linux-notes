@@ -1,11 +1,5 @@
 # How to setup games on Arch Linux
-(Note: I only use arch packages, hence the absence of other packageing formats installation instructions)
-
-## Open Source Games
-```sh
-sudo pacman -Syu 0ad xonotic supertuxkart minetest warzone2100 openttd openttd-gfx openttd-sfx wesnoth springlobby shattered-pixel-dungeon astromenace endless-sky endless-sky-high-dpi pioneer
-paru -Syu mindustry-bin airshipper
-```
+(Note: I only use arch packages, hence the absence of installation instructions for other packaging formats)
 
 ## Minecraft
 ```sh
@@ -32,3 +26,4 @@ paru -Syu protonup-qt protontricks
 ```sh
 sudo pacman -Syu steam libappindicator-gtk2 lib32-libappindicator-gtk2
 ```
+

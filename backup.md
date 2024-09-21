@@ -1,23 +1,24 @@
 # How to manage backups on Arch Linux
 
 ## Borg
-Install:
-```bash
-sudo pacman -S borg
-```
 
-Initialize repository:
-```bash
-borg init --encryption=repokey "/run/media/raffaele/Samsung 860 1TB"
-```
+### Initialize a new repository
 
-Backup repo key:
-```bash
-borg key export "/run/media/raffaele/Samsung 860 1TB" ~/documents/borg-repokey
-```
+`borg init --encryption=repokey "/path/to/repo"`
 
-Make a backup:
-```bash
-borg create --list "/run/media/raffaele/Samsung 860 1TB"::archive-{hostname}-{now} .
-```
+### List all backups of a specific repository
+
+`borg list "path_to_repo_directory"`
+
+### Extract a folder from a borg backup
+
+`borg extract -v --list "repo_path"::backup_name folder_path`
+
+### Delete a repository
+
+`borg delete "/path/to/repo"`
+
+## Backrest
+
+...
 
