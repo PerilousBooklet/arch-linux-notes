@@ -99,8 +99,7 @@ paru -S flutter \
 
 ### Ruby
 
-https://wiki.archlinux.org/title/Ruby
-https://wiki.archlinux.org/title/RVM
+`paru -S rvm`
 
 ### OCaml
 
