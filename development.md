@@ -12,6 +12,10 @@
 sudo pacman -Syu gcc make cmake ninja
 ```
 
+### C# / F#
+
+`sudo pacman -S dotnet-sdk aspnet-runtime`
+
 ### Java
 
 Install the latest Java Development Kit:
