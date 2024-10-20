@@ -6,6 +6,23 @@
 
 `sudo pacman -Syu git git-lfs`
 
+### Android (Java/Kotlin)
+
+<!-- Sources -->
+<!-- https://wiki.archlinux.org/title/Android# -->
+<!-- https://stackoverflow.com/questions/75249860/how-to-develop-an-android-application-without-android-studio -->
+<!-- https://www.revelo.com/blog/how-to-build-an-android-development-environment-without-android-studio -->
+<!-- https://developer.okta.com/blog/2018/08/10/basic-android-without-an-ide -->
+<!-- https://www.kuon.ch/post/2020-01-12-android-app/ -->
+
+Setup the Android platform tools:
+
+`paru -Syu android-sdk android-sdk-build-tools android-sdk-cmdline-tools-latest android-platform android-sdk-platform-tools`
+
+Setup the emulator:
+
+`?`
+
 ### C/C++
 
 ```sh
@@ -14,7 +31,11 @@ sudo pacman -Syu gcc make cmake ninja
 
 ### C# / F#
 
-`sudo pacman -S dotnet-sdk aspnet-runtime`
+`sudo pacman -S dotnet-sdk aspnet-runtime nuget`
+
+`dotnet tool install -g fsautocomplete`
+
+`dotnet tool install -g csharpier`
 
 ### Java
 

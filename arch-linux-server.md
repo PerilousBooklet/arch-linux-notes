@@ -1,11 +1,37 @@
 # Arch Linux Server Guide
 
-## Setup
-1. ssh
-2. mdadm (software RAID)
-3. tmux
-4. docker
-5. lazydocker
+<!-- TODO: add SSH setup -->
+<!-- TODO: add ufw setup -->
+<!-- TODO: add git setup -->
+<!-- TODO: add tmux setup -->
+<!-- TODO: add neovim super-lite custom setup -->
+<!-- TODO: RAID setup with mdadm -->
+<!-- TODO: add docker setup, lazydocker as dashboard -->
+<!-- TODO: add minecraft server setup -->
+
+## Remote Access
+
+### Download files from server
+
+`scp -P 2237 -r minecraft@2.229.203.28:/path/to/remote_file_or_folder /path/to/local_file_or_folder`
+
+### Upload files to server
+
+`scp -P 2237 -r /path/to/local_file_or_folder minecraft@2.229.203.28:/path/to/remote_file_or_folder`
+
+## Network Security
+
+## Storage
+
+### RAID 1
+
+### RAID 5
+
+## Services
+
+### Docker
+
+### Native
 
 ## Security
 Firewall:
