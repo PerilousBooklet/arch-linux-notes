@@ -211,6 +211,14 @@ paru -Syu godot3-bin godot-voxel
 sudo pacman -Syu dev-tools namcap
 ```
 
+### QMK
+
+`sudo pacman --needed --noconfirm -S git python-pip libffi`
+
+`python3 -m pip install --user qmk`
+
+`qmk setup`
+
 ### Flashing ROMs
 
 ```sh
