@@ -54,6 +54,9 @@ Check installed java versions:
 archlinux-java status
 ```
 
+Install the Spring Boot CLI app:
+`paru -S spring-boot-cli`
+
 ### Python
 
 ```sh
