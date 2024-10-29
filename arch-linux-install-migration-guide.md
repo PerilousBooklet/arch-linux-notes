@@ -54,6 +54,10 @@ rsync -qaHAXS /mnt/old_root /mnt/new_root
 
 `grub-mkconfig -o /boot/grub/grub.cfg`
 
+### Change microcode setting
+
+### Change video drivers
+
 ## Troubleshooting
 
 [Missing EFI vars when reinstalling GRUB inside arch chroot](https://bbs.archlinux.org/viewtopic.php?id=249546)
