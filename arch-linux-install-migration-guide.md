@@ -54,9 +54,9 @@ rsync -qaHAXS /mnt/old_root /mnt/new_root
 
 `grub-mkconfig -o /boot/grub/grub.cfg`
 
-### Change microcode setting
+## Change microcode setting
 
-### Change video drivers
+## Change video drivers
 
 ## Troubleshooting
 
