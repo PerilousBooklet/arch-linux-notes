@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Software Development](#software-development)
-  - [Base](#base)
   - [Android](#android-javakotlin)
   - [Arch Linux](#arch-linux)
   - [Arduino](#arduino)
