@@ -1,10 +1,22 @@
 # Development
 
+## Table of Contents
+
+- [Software Development](#software-development)
+  - [Base](#base)
+  - [Android](#android-javakotlin)
+  - [C/C++](#cc)
+- [Hardware Development](#hardware-development)
+- [Product Design](#product-design)
+- [OCR](#ocr)
+
 ## Software Development
 
-### Version Control System
+### Base
 
-`sudo pacman -Syu git git-lfs`
+`sudo pacman -Syu git git-lfs tmux docker docker-compose jq sed awk`
+
+`paru -S when-changed-git`
 
 ### Android (Java/Kotlin)
 
@@ -94,36 +106,6 @@ paru -Syu rstudio-desktop-bin
 ### Dart
 
 `sudo pacman -Syu dart`
-
-### Flutter
-
-https://docs.flutter.dev/get-started/install/linux/desktop?tab=download
-
-?
-```sh
-paru -Syu android-sdk android-sdk-build-tools android-sdk-cmdline-tools-latest android-platform android-sdk-platform-tools
-```
-
-?
-```sh
-paru -S flutter \
-        flutter-common \
-        flutter-gradle \
-        flutter-tool \
-        flutter-devel \
-        flutter-target-linux \
-        flutter-target-android \
-        flutter-target-web \
-        flutter-intellij-patch \
-        flutter-engine-common-google-bin \
-        flutter-engine-linux-google-bin \
-        flutter-engine-web-google-bin \
-        flutter-engine-android-google-bin \
-        flutter-sky-engine-google-bin \
-        flutter-material-fonts-google-bin \
-        flutter-gradle-google-bin \
-        flutter-dart-google-bin
-```
 
 ### Ruby
 
@@ -244,3 +226,8 @@ sudo pacman -Syu freecad
 sudo pacman -Syu openscad
 ```
 
+## OCR
+
+```sh
+sudo pacman -Syu tesseract tesseract-data-eng tesseract-data-ita
+```

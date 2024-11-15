@@ -62,4 +62,3 @@ rsync -qaHAXS /mnt/old_root /mnt/new_root
 
 [Missing EFI vars when reinstalling GRUB inside arch chroot](https://bbs.archlinux.org/viewtopic.php?id=249546)
 
-
