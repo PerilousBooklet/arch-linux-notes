@@ -5,15 +5,32 @@
 - [Software Development](#software-development)
   - [Base](#base)
   - [Android](#android-javakotlin)
+  - [Arch Linux](#arch-linux)
+  - [Arduino](#arduino)
   - [C/C++](#cc)
-  - []
-- [Hardware Development](#hardware-development)
-- [Product Design](#product-design)
-- [OCR](#ocr)
+  - [C#/C#](#c-f)
+  - [Common Lisp](#common-lisp)
+  - [Flashing ROMs](#flashing-roms)
+  - [Fonts](#fonts)
+  - [Godot](#godot)
+  - [Haskell](#haskell)
+  - [Java](#java)
+  - [LaTeX](#latex)
+  - [Lilypond](#lilypond)
+  - [Lua](#lua)
+  - [Matlab](#matlab)
+  - [Minecraft](#minecraft)
+  - [OCaml](#ocaml)
+  - [OpenSCAD](#openscad)
+  - [Python](#python)
+  - [R](#r)
+  - [SQL](#sql)
+  - [Ruby](#ruby)
+  - [Web](#web)
 
 ## Software Development
 
-### Base
+Base tools:
 
 `sudo pacman -Syu git git-lfs tmux docker docker-compose jq sed awk`
 
@@ -36,19 +53,50 @@ Setup the emulator:
 
 `?`
 
-### C/C++
+### Arch Linux
 
 ```sh
-sudo pacman -Syu gcc make cmake ninja
+sudo pacman -Syu dev-tools namcap
 ```
+
+### Arduino
+
+`paru -Syu arduino-ide-bin`
+
+### C/C++
+
+`sudo pacman -Syu gcc make cmake ninja`
 
 ### C# / F#
 
-`sudo pacman -S dotnet-sdk aspnet-runtime nuget`
+```sh
+sudo pacman -S dotnet-sdk aspnet-runtime nuget
+dotnet tool install -g fsautocomplete
+dotnet tool install -g csharpier
+```
 
-`dotnet tool install -g fsautocomplete`
+### Common Lisp
 
-`dotnet tool install -g csharpier`
+`sudo pacman -S sbcl quicklisp`
+
+### Flashing ROMs
+
+`sudo pacman -Syu flashrom`
+
+### Fonts
+
+`sudo pacman -Syu fontforge birdfont gucharmap`
+
+### Godot
+
+```sh
+sudo pacman -Syu godot
+paru -Syu godot3-bin godot-voxel
+```
+
+### Haskell
+
+`sudo pacman -Syu ghc cabal-install`
 
 ### Java
 
@@ -70,18 +118,6 @@ archlinux-java status
 Install the Spring Boot CLI app:
 `paru -S spring-boot-cli`
 
-### Python
-
-```sh
-sudo pacman -Syu python python-pipx python-venv
-```
-
-### Lua
-
-```sh
-sudo pacman -Syu lua
-```
-
 ### LaTex
 
 ```sh
@@ -92,25 +128,22 @@ sudo pacman -Syu texlive-most texlive-lang texstudio
 
 `sudo pacman -Syu lilypond frescobaldi`
 
-### R
+### Lua
 
 ```sh
-sudo pacman -Syu r gcc-fortran
-paru -Syu rstudio-desktop-bin
+sudo pacman -Syu lua
 ```
 
-### HTML/CSS/Javascript/PHP
+### Matlab
+
+`sudo pacman -Syu octave`
+
+### Minecraft
+
 ```sh
-?
+sudo pacman -Syu jdk8-openjdk jdk-openjdk
+paru -Syu blockbench-bin nbtexplorer fernflower-git
 ```
-
-### Dart
-
-`sudo pacman -Syu dart`
-
-### Ruby
-
-`paru -S rvm`
 
 ### OCaml
 
@@ -131,104 +164,33 @@ opam install ocaml-lsp-server odoc ocamlformat utop
 opam install user-setup
 ```
 
-### Common Lisp
-
-Setup Common Lisp:
-
-`sudo pacman -S sbcl quicklisp`
-
-### Arduino
-
-```sh
-paru -Syu arduino-ide-bin
-```
-
 ### OpenSCAD
 
-```sh
-sudo pacman -Syu openscad
-```
+`sudo pacman -Syu openscad`
 
-### Haskell
+### Python
 
 ```sh
-sudo pacman -Syu ghc cabal-install
+sudo pacman -Syu python python-pipx python-venv
 ```
 
-### Matlab
+### R
 
 ```sh
-sudo pacman -Syu octave
+sudo pacman -Syu r gcc-fortran
+paru -Syu rstudio-desktop-bin
 ```
 
-### PostgreSQL
+### Ruby
 
-Install the following:
-```sh
-sudo pacman -Syu postgresql
-sudo pacman -Syu dbeaver
-```
+`paru -S rvm`
 
-Use docker for dev deployment.
+### SQL
 
-### TTF/OTF fonts dev
+`sudo pacman -Syu sqlite postgresql dbeaver`
 
-```sh
-sudo pacman -Syu birdfont gucharmap fontforge
-```
+### Web
 
-### Minecraft mods
+<!-- html/css/js/php -->
+`?`
 
-```sh
-sudo pacman -Syu jdk8-openjdk jdk-openjdk
-paru -Syu blockbench-bin nbtexplorer fernflower-git
-```
-
-### Godot game development
-
-```sh
-sudo pacman -Syu godot
-paru -Syu godot3-bin godot-voxel
-```
-
-### Arch packages
-
-```sh
-sudo pacman -Syu dev-tools namcap
-```
-
-### QMK
-
-`sudo pacman --needed --noconfirm -S git python-pip libffi`
-
-`python3 -m pip install --user qmk`
-
-`qmk setup`
-
-### Flashing ROMs
-
-```sh
-sudo pacman -Syu flashrom
-```
-
-## Hardware Development
-
-```sh
-sudo pacman -Syu kicad
-```
-
-## Product Design
-
-```sh
-sudo pacman -Syu freecad
-```
-
-```sh
-sudo pacman -Syu openscad
-```
-
-## OCR
-
-```sh
-sudo pacman -Syu tesseract tesseract-data-eng tesseract-data-ita
-```
