@@ -7,7 +7,7 @@
   - [Arch Linux](#arch-linux)
   - [Arduino](#arduino)
   - [C/C++](#cc)
-  - [C#/C#](#c-f)
+  - [C#/F#](#c-f)
   - [Common Lisp](#common-lisp)
   - [Flashing ROMs](#flashing-roms)
   - [Fonts](#fonts)

@@ -545,4 +545,54 @@ Made even simpler if you go with a distro like endeavouros which is like a intro
 
 ## 27
 
+I have been using Arch for ~10 years.
+I will write the stuff that makes Arch better for me as a developer and advanced Linux user.
+These differ from overrepeated sterotypical and extremely over-memed crap.
+
+- Rolling release model is much more suitable to work with actual application developers.
+  The actual Linux developers often use up to date versions of libraries.
+  Regular distros often ship older versions.
+  There may be corner cases or well handled cases in the up to date versions of libraries that actually makes them more reliable or easily debuggable.
+- GNU/Linux is binary hostile.
+  For free software purists source is the only form of software matters so their development process and software design is often incompatible with the stable binary distribution.
+  GNU and FSF originated components are quite essential and even the most core components break compatibility sometimes.
+  It is hard and tedious to maintain stable software interfaces while innovating.
+  Many developers are volunteers so they don't care about unrewarding software stability.
+  This makes developing applications for Linux a challenge (esp. closed source ones).
+  Stable distros are designed for 3rd party developers and system admins to keep them sane.
+  They achieve this by creating stable binary interfaces by locking the library versions down and then patching them with bugfixes while trying to keep binary compatibility.
+  This results in Frankenstein's monster kind of forks and they are harder to debug for upstream developers.
+  On the other hand compiling everything is a waste of user time and energy.
+  Arch is a compromise.
+  You have to update the system completely but you get binary packages.
+  This is more friendly for FOSS developers.
+- Arch is simple.
+  It often refrains from modying FOSS software as other distros do.
+  It carries a lot of bloat because of this.
+  However, this bloat of non-separated dependencies and development stuff in packages makes it a better development environment.
+  Arch avoids modifying configuration of the packages in an overzealous way.
+  It is up to user to figure everything out.
+- Arch does not ban proprietary packages as other distros do.
+  While FOSS is fun and great, some software is written as closed source for many different reasons primarily financial.
+  IMO, it should be user's decision whether to or not to use proprietary software.
+  Arch as a simple distribution refrains making this decision for you.
+  If a proprietary software manages to survive Linux ecosystem, it often works under Arch.
+- Again Arch is simple.
+  The configuration does not have abstractions and guard rails around it as in the other distros.
+  It forces user to be completely aware of the system state.
+  If it breaks, it is 90% user's fault because it is user's responsibility to maintain their system.
+  In the recent years maintaining Linux systems got a lot easier and the many components have matured so it is a lot easier to be a control freak.
+  Arch provides tools and guidelines to ease this.
+
+## 28
+
+Two extra points for me:
+
+- The AUR model: open, easy to participate into, with next to zero configuration needed.
+  It's absolutely brilliant and resulted in virtually all existing software being readily available on arch.
+- The fact that, despite it being a binary distribution, it is extremely easy to build modified versions of software from source if needed (via tools like asp), and integrate them with the existing dependency management.
+  Applies to the kernel too.
+
+## 29
+
 

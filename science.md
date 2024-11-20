@@ -2,16 +2,13 @@
 
 ## Molecule modeling
 ```sh
-paru -Syu avogadro2
-```
-
-## Genome Visualization
-```sh
-paru -Syu genometools
+sudo pacman -Syu avogadro-crystals avogadro-fragments avogadro-molecules
+paru -Syu avogadro2-bin
 ```
 
 ## Geology
 
 ```sh
-sudo pacman -S qgis
+sudo pacman -Syu qgis
 ```
+

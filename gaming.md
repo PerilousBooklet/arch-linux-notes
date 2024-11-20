@@ -3,7 +3,8 @@
 
 ## Minecraft
 ```sh
-paru -Syu prismlauncher-qt5-bin nbtexplorer-bin
+sudo pacman -Syu prismlauncher
+paru -Syu nbtexplorer-bin
 ```
 
 ## RPCS3
