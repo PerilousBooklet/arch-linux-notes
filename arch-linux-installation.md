@@ -409,6 +409,12 @@ or
 sudo pacman -S nvidia-dkms nvidia-settings linux-headers
 ```
 
+### Enable TRIM on the SSD
+
+`sudo systemctl enable fstrim.timer`
+
+`sudo systemctl start fstrim.timer`
+
 ### Install a Desktop Environment or a Window Manager
 Cinnamon:
 ```sh
@@ -768,6 +774,7 @@ Add the Network Printer and insert the printer's IP.
 Follow the menu.
 
 ### Setup local file sync
+
 Install syncthing:
 ```sh
 sudo pacman -S syncthing
@@ -864,7 +871,7 @@ iptables:
 
 ufw:
 ```sh
-sudo pacman -S ufw
+sudo pacman -S ufw gufw
 sudo pacman -S iptables
 reboot
 systemctl enable ufw.service
