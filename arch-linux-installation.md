@@ -670,6 +670,7 @@ export GTK_THEME=Nordic
 Set the Nordic theme in the lxappearance menu.
 
 ### Setup virtualization
+
 Install qemu with virt-manager:
 
 Install all the packages needed to run KVM:
@@ -734,7 +735,28 @@ Enable UEFI support for KVM virtual machines:
 sudo pacman -S edk2-ovmf
 ```
 
+<!-- https://blog.programster.org/kvm-missing-default-network -->
+
+Check if the default network is defined:
+
+```sh
+sudo virsh net-list --all
+```
+
+To manually start the network:
+
+```sh
+sudo virsh net-start default
+```
+
+To autostart the default network:
+
+```sh
+sudo virsh net-autostart --network default
+```
+
 ### Setup printer
+
 Install CUPS:
 ```sh
 sudo pacman -S cups
