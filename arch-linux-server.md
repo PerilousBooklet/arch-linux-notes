@@ -4,7 +4,7 @@
 <!-- TODO: add ufw setup -->
 <!-- TODO: add git setup -->
 <!-- TODO: add tmux setup -->
-<!-- TODO: add neovim super-lite custom setup -->
+<!-- TODO: add basic neovim setup -->
 <!-- TODO: add docker setup, lazydocker as dashboard -->
 <!-- TODO: add minecraft server setup -->
 
@@ -88,9 +88,10 @@ Mount the new partition:
 
 ```sh
 sudo mkdir -v /pool
-sudo mount /dev/md0 /pool
+sudo mount /dev/md0 /home/nas/backups/desktop
 ```
 
+<!-- FIX: the following fstab entry is broken -->
 To setup auto-mount at boot, create a new entry in `/etc/fstab`, using the raid device's UUID.
 
 Get the raid device's UUID:

@@ -1,7 +1,5 @@
 # How to create an arch linux package the right way
 
----
-
 ## Install devtools
 
 ```bash
@@ -37,13 +35,13 @@ Edit ~/.makepkg.conf to set the packager name and any makeflags:
 Adjust the mirrorlist in $CHROOT/root/etc/pacman.d/mirrorlist:
 
 ```bash
-
+WIP
 ```
 
 Enable the testing repositories in $CHROOT/root/etc/pacman.conf:
 
 ```bash
-
+WIP
 ```
 
 ## How to prepare the chroot before building a package
@@ -61,3 +59,4 @@ Build the package by calling __*makechrootpkg*__ in the directory containing its
 ```bash
 makechrootpkg -c -r $CHROOT package_name
 ```
+

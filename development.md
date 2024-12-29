@@ -100,24 +100,28 @@ paru -Syu godot3-bin godot-voxel
 ### Java
 
 Install the latest Java Development Kit:
+
 ```sh
 sudo pacman -Syu jdk-openjdk
 ```
 
 Set default system-wide java version:
+
 ```sh
 sudo archlinux-java set java-20-openjdk # for java 20
 ```
 
 Check installed java versions:
+
 ```sh
 archlinux-java status
 ```
 
 Install the Spring Boot CLI app:
+
 `paru -S spring-boot-cli`
 
-### LaTex
+### LaTeX
 
 ```sh
 sudo pacman -Syu texlive-most texlive-lang texstudio
@@ -158,6 +162,7 @@ echo "test -r '/home/raffaele/.opam/opam-init/init.sh' && . '/home/raffaele/.opa
 ```
 
 Setup platform tools:
+
 ```sh
 opam install ocaml-lsp-server odoc ocamlformat utop
 opam install user-setup
@@ -192,4 +197,3 @@ paru -Syu rstudio-desktop-bin
 
 <!-- html/css/js/php -->
 `?`
-

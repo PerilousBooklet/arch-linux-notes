@@ -1,4 +1,5 @@
 # Arch Linux Stability Guide
+
 1. Use an LTS kernel:
 2. Read [this][1] and [this][2] before updating.
 3. Do not install out-of-date packages (?)

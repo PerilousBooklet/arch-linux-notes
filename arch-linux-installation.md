@@ -416,6 +416,7 @@ sudo pacman -S nvidia-dkms nvidia-settings linux-headers
 `sudo systemctl start fstrim.timer`
 
 ### Install a Desktop Environment or a Window Manager
+
 Cinnamon:
 ```sh
 sudo pacman -S cinnamon
@@ -509,7 +510,9 @@ echo "lxsession &" > ~/.xprofile
 ```
 
 ### Desktop Environment Setup
-cinnamon:
+
+Cinnamon:
+
 ```sh
 sudo pacman -S cinnamon papirus-icon-theme
 paru -S mint-themes papirus-folders
@@ -523,12 +526,15 @@ fi
 ```
 
 ### Window Manager Setup
+
 bspwm(x11):
+
 ```sh
 sudo pacman -S bspwm sxhkd rofi polybar feh dunst picom i3lock imagemagick scrot python-pywal
 ```
 
 river(wayland):
+
 ```sh
 sudo pacman -S river waybar ?
 ```
@@ -536,12 +542,15 @@ sudo pacman -S river waybar ?
 ### X configuration
 
 #### Desktop
+
 Disable default X lockscreen:
+
 ```sh
 vim /etc/X11/xorg.conf
 ```
 
 Write the following at the end of the file:
+
 ```sh
 Section "ServerFlags"
     Option    "blank time" "0"
@@ -552,19 +561,23 @@ EndSection
 ```
 
 #### Laptop
+
 Enable the touchpad:
 
 Install the synaptics driver:
+
 ```sh
 sudo pacman -S xf86-input-synaptics
 ```
 
 Create the configuration file:
+
 ```sh
 touch /etc/X11/xorg.conf.d/70-synaptics.conf
 ```
 
 Write the following inside of `/etc/X11/xorg.conf.d/70-synaptics.conf`:
+
 ```
 # source: https://wiki.archlinux.org/title/Touchpad_Synaptics#Configuration
 Section "InputClass"
@@ -590,17 +603,20 @@ EndSection
 ```
 
 Power management configuration:
+
 ```sh
 sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 ```
 
 Backlight configuration:
+
 ```sh
 sudo pacman -S acpilight
 ```
 
 ### Ryzen 5 1600 sudden-crash/freeze work-around
+
 ```sh
 paru -S disable-c6-systemd
 systemctl enable disable-c6.service
@@ -609,37 +625,46 @@ systemctl status disable-c6.service
 ```
 
 ### GTK and QT Configuration
+
 Set the mouse cursor theme with lxappearance.
 
 Install a package to enable correct rendering of Gruvbox GTK theme for Cinnamon:
+
 ```sh
 sudo pacman -S gtk-engine-murrine
 ```
 
 #### X - Force cursor theme in bspwm root window
+
 Go to `~/.config/bspwm/bspwmrc`:
+
 ```sh
 vim .config/bspwm/bspwmrc
 ```
 
 Write the following:
+
 ```
 xsetroot -cursor_name left_ptr
 ```
 
 #### QT
+
 Install the necessary packages:
+
 ```sh
 sudo pacman -S qt5-base qt5-doc adwaita-qt5 qt6-base qt6-doc adwaita-qt6 qtcurve kvantum qt5ct
 paru -S nordic-theme
 ```
 
 Setup the configuration files:
+
 ```sh
 vim .bashrc
 ```
 
 Add the following:
+
 ```sh
 export QT_SELECT=5
 export QT_STYLE_OVERRIDE=kvantum
@@ -647,22 +672,27 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 ```
 
 #### GTK
+
 Install the necessary packages:
+
 ```sh
 sudo sudo pacman -S gtk3 gnome-themes-extra dconf-editor
 ```
 
 Setup the configuration files:
+
 ```sh
 vim .bashrc
 ```
 
 Install the nordic-theme:
+
 ```sh
 paru -S nordic-theme
 ```
 
 Add the following:
+
 ```sh
 export GTK_THEME=Nordic
 ```
@@ -674,6 +704,7 @@ Set the Nordic theme in the lxappearance menu.
 Install qemu with virt-manager:
 
 Install all the packages needed to run KVM:
+
 ```sh
 sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
 sudo pacman -S ebtables iptables-nft
@@ -682,22 +713,26 @@ sudo pacman -S ebtables iptables-nft
 N.B.: iptables-nft is expected to replace iptables.
 
 Install a set of tools used to access and modify virtual machine (VM) disk images:
+
 ```sh
 sudo pacman -S libguestfs
 ```
 
 Install a package to support virtualization of TPL 2.0 for Windows 11:
+
 ```sh
 sudo pacman -S swtpm
 ```
 
 Start KVM libvirt service:
+
 ```sh
 systemctl enable libvirtd.service
 systemctl start libvirtd.service
 ```
 
 Show service status:
+
 ```sh
 systemctl status libvirtd.service
 ```
@@ -705,32 +740,38 @@ systemctl status libvirtd.service
 We want to use our standard Linux user account to manage KVM:
 
 Open the file /etc/libvirt/libvirtd.conf for editing:
+
 ```sh
 vim /etc/libvirt/libvirtd.conf
 ```
 
 Set the UNIX domain socket group ownership to libvirt by uncommenting (around line 81):
+
 ```
 unix_sock_group = "libvirt"
 ```
 
 Set the UNIX socket permissions for the R/W socket by uncommenting (around line 104):
+
 ```
 unix_sock_rw_perms = "0770"
 ```
 
 Add your user account to libvirt group:
+
 ```sh
 usermod -aG libvirt raffaele
 newgrp libvirt
 ```
 
 Restart libvirt daemon:
+
 ```sh
 systemctl restart libvirtd.service
 ```
 
 Enable UEFI support for KVM virtual machines:
+
 ```sh
 sudo pacman -S edk2-ovmf
 ```
@@ -758,31 +799,37 @@ sudo virsh net-autostart --network default
 ### Setup printer
 
 Install CUPS:
+
 ```sh
 sudo pacman -S cups
 ```
 
 Enable cups:
+
 ```sh
 systemctl enable --now cups
 ```
 
 Add current user to the lp group:
+
 ```sh
 usermod -aG lp raffaele
 ```
 
 Install a GUI printer manager:
+
 ```sh
 sudo pacman -S system-config-printer
 ```
 
 Install specific printer drivers (for most HP printers):
+
 ```sh
 sudo pacman -S hplip
 ```
 
 Install general printer drivers:
+
 ```sh
 sudo pacman -S gutenprint foomatic-db-gutenprint-ppds
 ```
@@ -798,11 +845,13 @@ Follow the menu.
 ### Setup local file sync
 
 Install syncthing:
+
 ```sh
 sudo pacman -S syncthing
 ```
 
 Start/enable syncthing:
+
 ```sh
 systemctl start syncthing.service
 systemctl enable syncthing.service
@@ -811,28 +860,35 @@ systemctl enable syncthing.service
 Setup device sync from web interface.
 
 ### Setup UVC Webcam/Camera
+
 Install video4linux:
+
 ```sh
 sudo pacman -S v4l-utils
 ```
 
 Check devices:
+
 ```sh
 v4l2-ctl --list-devices
 ```
 
 ### Setup Wacom Tablet
+
 Install drivers:
+
 ```sh
 sudo pacman -S xf86-input-wacom
 ```
 
 Search for wacom tablet name:
+
 ```sh
 xsetwacom --list devices
 ```
 
 Search for the output address needed by xsetwacom:
+
 ```sh
 xrandr
 ```
@@ -841,39 +897,48 @@ Search for the wacom display; right of the device name there is an address: es. 
 Use that address in the following command, together with the wacom tablet name:
 
 Map device to display:
+
 ```sh
 xsetwacom --set "Wacom One Pen Display 13 Pen stylus" MapToOutput 1920x1080+...+...
 ```
 
 ### Setup bluetooth
+
 Installing packages:
+
 ```sh
 sudo pacman -S bluez bluez-plugins bluez-utils blueman
 ```
 
 Check devices:
+
 ```sh
 lsmod | grep btusb
 ```
 
 Check config:
+
 ```sh
 vim /etc/bluetooth/main.conf
 ```
 
 Enable bluetooth:
+
 ```sh
 systemctl enable bluetooth.service
 systemctl start bluetooth.service
 ```
 
 Install support for pulseaudio with bluetooth:
+
 ```sh
 sudo pacman -S pulseaudio-bluetooth
 ```
 
 ### Setup pinetime companion app
+
 Install companion app:
+
 ```sh
 paru -S itd-git
 ```
@@ -881,17 +946,21 @@ paru -S itd-git
 ### Security
 
 #### Malware detection:
+
 ```sh
 sudo pacman -S clamav
 ```
 
 #### Firewalls:
+
 iptables:
+
 ```sh
 ?
 ```
 
 ufw:
+
 ```sh
 sudo pacman -S ufw gufw
 sudo pacman -S iptables
@@ -908,7 +977,9 @@ ufw status
 ```
 
 #### Mandatory access control
+
 firejail (user-space level):
+
 ```sh
 sudo pacman -S firejail fire-tools
 sudo firecfg
@@ -916,6 +987,7 @@ firecfg --clean #(?)
 ```
 
 apparmor (kernel-space level):
+
 ```sh
 sudo pacman -S apparmor
 systemctl enable apparmor.service
@@ -924,14 +996,16 @@ aa-status
 ```
 
 #### Shared devices
+
 ```sh
 sudo pacman -S fail2ban
 ```
 
 ### Backup
-Basic solution: `rclone`
 
-Advanced solution: `borg`
+Basic solution: `borg`
+
+Advanced solution: backrest
 
 ## Final Reboot
 ```sh
