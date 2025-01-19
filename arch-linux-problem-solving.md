@@ -1,3 +1,9 @@
+### How to fix Steam UI buttons not doing anything when pressed
+
+Go to Steam -> Settings -> Interface
+
+Disable `Enable GPU accelerated rendering in web views (requires restart)`
+
 ### How to fix Avatar: Frontiers of Pandora on Heroic Games Launcher (Epic) not working because of incompatible DirectX version
 ?
 
