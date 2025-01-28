@@ -22,7 +22,7 @@ Enable access from other machines:
 sed -i 's|<address>127.0.0.1:8384</address>|<address>0.0.0.0:8384</address>|g' "~/.local/state/syncthing/config.xml"
 ```
 
-Then access the Syncthing GUI from your pc with `https://0.0.0.0:8384`
+Then access the Syncthing GUI from your pc with `https://0.0.0.0:8384/` (replace 0.0.0.0 with the server ip)
 
 ## Network Security
 
