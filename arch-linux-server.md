@@ -35,6 +35,7 @@ Then access the Syncthing GUI from your pc with `https://0.0.0.0:8384/` (replace
 1. Change the SSH port: `sed -i 's/#Port 22/Port 2237/g' /etc/ssh/sshd_config`
 2. Prohibit root login: add `PermitRootLogin no` to `/etc/ssh/sshd_config`.
 3. Enable and start the SSH daemon: `sudo systemctl enable --now sshd`
+4. Connect to the server remotely (replace `x.x.x.x` with IP address): `ssh -p 2237 production@x.x.x.x`
 
 #### With keys
 
