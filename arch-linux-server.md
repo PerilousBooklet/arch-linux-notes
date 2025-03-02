@@ -49,6 +49,8 @@ Write down the security password into the password database.
 
 Copy the generated keys to the server (replace `x.x.x.x` with IP address): `ssh-copy-id -i ~/.ssh/keyname.pub -p 2237 username@x.x.x.x`
 
+Connect with `ssh -i /home/user/.ssh/keyname -p 2237 username@x.x.x.x`
+
 > [!NOTE]
 > Optional but strongly advised: https://wiki.archlinux.org/title/OpenSSH#Force_public_key_authentication
 
