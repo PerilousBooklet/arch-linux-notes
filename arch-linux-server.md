@@ -12,9 +12,9 @@
 
 ### Syncthing headless setup
 
-Install [Syncthing](https://wiki.archlinux.org/title/Syncthing):
+Install [Syncthing](https://wiki.archlinux.org/title/Syncthing): `sudo pacman -Syu syncthing`
 
-`sudo pacman -Syu syncthing`
+Enable and start the syncthing daemon: `sudo systemctl enable --now syncthing@username.service`
 
 Enable access from other machines:
 
