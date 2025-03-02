@@ -40,11 +40,13 @@ journalctl /usr/bin/process-name
 ```
 
 ## How to solve package dependency conflicts
+
 - gather data about the conflicting packages to understand what they are, what they do and how they do it
 - try to see which dependency you can keep and which you can uninstall
 (very rare type of problem)
 
 ## Check and clean pacman cache
+
 check:
 ```sh
 du -sh /var/cache/pacman/pkg
