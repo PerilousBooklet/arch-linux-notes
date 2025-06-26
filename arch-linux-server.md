@@ -47,11 +47,11 @@ Connect with `ssh -i /home/user/.ssh/keyname -p 2237 username@x.x.x.x`
 > [!NOTE]
 > Optional but strongly advised: https://wiki.archlinux.org/title/OpenSSH#Force_public_key_authentication
 
-### Self-hosted VPN
+### WIP: Self-hosted VPN
 
 Wireguard is a simple and fast modern VPN that utilizes state-of-the-art cryptography.
 
-Setting up a VPN is not as straightforward as setting up a conventional service on Docker,
+Setting up a VPN is not as straightforward as setting up a conventional service on Docker;
 several steps that involve different environments and devices are required:
 
 - Get static home IP (if you can't, use noip.com + auto-update service)
@@ -165,7 +165,7 @@ TODO: config
 
 ### rsync
 
-[rsynx]() is a powerful CLI tool to synchronize files and folders.
+[rsync]() is a powerful CLI tool to synchronize files and folders.
 
 > [!NOTE]
 > This is NOT a full backup tool, it just creates a remote copy and keeps updating it. It doesn't create snapshots.
@@ -194,7 +194,7 @@ rsync --archive \
 
 ### borg
 
-[borg](https://borgbackup.readthedocs.io/en/stable/) is a backup tool that synchronizes and deduplicates data to a remote repository. This remote repository contains snapshots that vary between each otehr only for the new modifications applied since the previous snapshot (hence why it's `deduplicating`).
+[borg](https://borgbackup.readthedocs.io/en/stable/) is a backup tool that synchronizes and deduplicates data to a remote repository. This remote repository contains snapshots that vary between each other only for the new modifications applied since the previous snapshot (hence why it's `deduplicating`).
 
 Initialize a new repository: `borg init --encryption=repokey "/path/to/repo"`
 
@@ -261,6 +261,7 @@ A `RAID 1` storage setup is useful on a small NAS, to make sure that if one disk
 - Mount the filesystem: 
 - `sudo mkdir -v /pool`
 - `sudo mount /dev/md/pool /pool`
+- TODO: setup auto-mount on boot
 
 ### RAID 5
 
@@ -272,7 +273,7 @@ TODO: brief intro
 
 Install Docker with `sudo pacman -Syu docker docker-compose`.
 
-[lazydocker](https://github.com/jesseduffield/lazydocker) lets you visualize and manage all containers running on a server through a simple an pretty TUI.
+[lazydocker](https://github.com/jesseduffield/lazydocker) lets you visualize and manage all containers running on a server through a simple and pretty TUI.
 
 Install `lazydocker` with `paru -Sua lazydocker`.
 
