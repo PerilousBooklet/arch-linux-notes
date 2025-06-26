@@ -1,7 +1,19 @@
 # Development
 
+<!-- https://wiki.archlinux.org/title/Security#Mandatory_access_control) -->
+<!-- https://labs.consol.de/development/linux/operating-systems/2018/06/18/arch-linux-for-devs.html) -->
+<!-- https://www.codementor.io/@g00b/arch-linux-install-guide-for-developers-1uvn3bs1h7) -->
+<!-- https://dev.to/svettwer/arch-linux-for-devs-26dm) -->
+<!-- https://bbs.archlinux.org/viewtopic.php?id=98817) -->
+<!-- https://www.nikbrendler.com/on-arch-linux/) -->
+<!-- https://www.reddit.com/r/archlinux/comments/jtptml/is_arch_good_for_developers_in_general/) -->
+<!-- https://www.reddit.com/r/archlinux/comments/1007tf6/is_it_a_good_idea_using_arch_linux_java_dev/) -->
+<!-- https://www.reddit.com/r/archlinux/comments/11sbaa8/matlab_toolbox/) -->
+<!-- https://www.reddit.com/r/archlinux/comments/13rgj3v/arch_as_work_distro/) -->
+
 ## Table of Contents
 
+- [How to Setup an Isolated Development Environment](#how-to-setup-an-isolated-development-environment)
 - [Software Development](#software-development)
   - [Android](#android-javakotlin)
   - [Arch Linux](#arch-linux)
@@ -26,6 +38,50 @@
   - [SQL](#sql)
   - [Ruby](#ruby)
   - [Web](#web)
+
+## How to setup an isolated development environment
+
+We're going to use `systemd-nspawn` and an example for an isolated Ruby development environment: 
+
+Create a directory to hold the container: `mkdir -v ./.env`
+
+Use pacstrap to install a basic Arch system into the container: `pacstrap -K -c ./.env base base-devel tar gzip diffutils git curl`
+
+Enter the container and set root password: 
+
+`systemd-nspawn -D ./.env`
+
+`passwd`
+
+`logout`
+
+Boot into the container: 
+
+`systemd-nspawn -b -D ~/.env`
+
+and login as `root`.
+
+> [!TIP]
+> The container can be powered off with `poweroff`.
+
+> [!TIP]
+> To terminate the session from within the container, hold `Ctrl` and rapidly press `]` three times.
+
+Get and run the official Ruby installer: 
+
+> [!NOTE]
+> This install is single-user.
+
+`curl -L get.rvm.io > rvm-install.sh`
+
+`bash < ./rvm-install.sh`
+
+Reload the shell: `source ~/.bash_profile`
+
+> [!NOTE]
+> The preferred way to reload would be to close the current shell/terminal and open a new one.
+
+Install required version of Ruby: `?`
 
 ## Software Development
 

@@ -1,26 +1,19 @@
 # Arch Linux Server Guide
 
-<!-- TODO: add SSH setup -->
-<!-- TODO: add ufw setup -->
 <!-- TODO: add git setup -->
 <!-- TODO: add tmux setup -->
-<!-- TODO: add basic neovim setup -->
+<!-- TODO: add basic vim setup -->
 <!-- TODO: add docker setup, lazydocker as dashboard -->
-<!-- TODO: add minecraft server setup -->
+
+TODO: brief intro
 
 ## Remote Access
 
-### Syncthing headless setup
+TODO: brief intro
 
-Install [Syncthing](https://wiki.archlinux.org/title/Syncthing): `sudo pacman -Syu syncthing`
+The standard way of connecting to your servers in your homelab and on a VPS is through SSH.
 
-Enable and start the syncthing daemon: `sudo systemctl enable --now syncthing@username.service`
-
-Enable access from other machines: `sed -i 's|<address>127.0.0.1:8384</address>|<address>0.0.0.0:8384</address>|g' "~/.local/state/syncthing/config.xml"`
-
-Then access the Syncthing GUI from your pc with `https://0.0.0.0:8384/` (replace 0.0.0.0 with the server ip)
-
-## Network Security
+Also, a self-hosted VPN allows your smartphone and laptop to securely access your homelab's services from outside.
 
 ### SSH
 
@@ -54,53 +47,28 @@ Connect with `ssh -i /home/user/.ssh/keyname -p 2237 username@x.x.x.x`
 > [!NOTE]
 > Optional but strongly advised: https://wiki.archlinux.org/title/OpenSSH#Force_public_key_authentication
 
-## Storage
+### Self-hosted VPN
 
-### RAID 1
+Wireguard is a simple and fast modern VPN that utilizes state-of-the-art cryptography.
 
-<!-- https://wiki.archlinux.org/title/RAID#Installation -->
-<!-- https://wiki.archlinux.org/title/RAID#Configure_mkinitcpio -->
+Setting up a VPN is not as straightforward as setting up a conventional service on Docker,
+several steps that involve different environments and devices are required:
 
-<!-- https://en.wikipedia.org/wiki/Comparison_of_file_systems#Limits -->
-<!-- https://en.wikipedia.org/wiki/Comparison_of_file_systems#Features -->
-
-<!-- https://wiki.archlinux.org/title/RAID#Monitoring -->
-<!-- https://wiki.archlinux.org/title/RAID#RAID_Maintenance -->
-
-- Add `mdadm_udev` to the `HOOKS` array of `/etc/mkinitcpio.conf`
-- Regenerate the initramfs: `sudo mkinitcpio -P`
-- Reboot
-- Partition the drives (create one `ext4` partition):
-- `sudo cfdisk /dev/sda`
-- `sudo cfdisk /dev/sdb`
-- Build the array:
-- `sudo mdadm --create --verbose --level=1 --metadata=1.2 --raid-devices=2 /dev/md/pool /dev/sda1 /dev/sdb1`
-- Update `mdadm` configuration file:
-- `su`
-- `mdadm --detail --scan >> /etc/mdadm.conf`
-- `exit`
-- Assemble the array:
-- `sudo mdadm --assemble --scan`
-- Check the array's state:
-- `sudo mdadm --detail /dev/md/pool`
-- Calculate `stride` and `stripe` width ([source](https://wiki.archlinux.org/title/RAID#Calculating_the_stride_and_stripe_width)):
-- `stride = chunk size / block size = 512KiB / 4KiB = 128KiB`
-- `stripe width = number of data disks * stride = 2 * 128 = 256`
-- Format the array with a filesystem: 
-- `sudo mkfs.ext4 -v -L pool -b 4096 -E stride=128,stripe-width=256 /dev/md/pool`
-- Mount the filesystem: 
-- `sudo mkdir -v /pool`
-- `sudo mount /dev/md/pool /pool`
--  Create device specific folders inside `/pool`:
-- `sudo mkdir -vp /pool/{backups-desktop,backups-minis12pro}`
-
-## Services
-
-TODO: Docker configuration
+- Get static home IP (if you can't, use noip.com + auto-update service)
+- Setup wireguard container on Docker
+- Open port on server firewall
+- Open port on home router firewall
+- Wireguard android app (client)
+- `wireguard-tools` (laptop, manual setup)
+- Connect stuff
 
 ## Security
 
+TODO: brief intro
+
 ### Firewall
+
+TODO: brief intro
 
 Install and activate `ufw`:
 
@@ -113,17 +81,9 @@ Set basic firewall rules:
 
 ```sh
 sudo ufw default deny incoming
-
 sudo ufw default allow outgoing
-
-# SSH
-sudo ufw allow 2237/tcp
-
-# Minecraft Server
-sudo ufw allow 25565/tcp
-
+sudo ufw allow 2237/tcp # the port for SSH
 sudo ufw enable
-
 sudo ufw status
 ```
 
@@ -173,6 +133,8 @@ net.ipv4.icmp_echo_ignore_all = 1
 
 ### Malware scanning
 
+TODO: brief intro
+
 ```sh
 sudo pacman -Syu clamav
 ```
@@ -180,6 +142,8 @@ sudo pacman -Syu clamav
 TODO: config
 
 ### Intrusion prevention
+
+TODO: brief intro
 
 ```sh
 sudo pacman -Syu fail2ban
@@ -189,6 +153,8 @@ TODO: config
 
 ### Kernel-space mandatory access control
 
+TODO: brief intro
+
 ```sh
 sudo pacman -Syu apparmor
 ```
@@ -197,8 +163,160 @@ TODO: config
 
 ## Backup
 
-Semi-professional solution:
+### rsync
+
+[rsynx]() is a powerful CLI tool to synchronize files and folders.
+
+> [!NOTE]
+> This is NOT a full backup tool, it just creates a remote copy and keeps updating it. It doesn't create snapshots.
+
+The following example script creates a copy of the `/home/origin_username` folder on a remote server through SSH:
+
+`~/.local/bin/backup`
 
 ```sh
-sudo pacman -Syu borg
+#!/bin/bash
+rsync --archive \
+      --compress \
+      --times \
+      --partial \
+      --progress \
+      --delete \
+      --verbose \
+      --human-readable \
+      --exclude='.cache' \
+      --exclude='.gradle' \
+      --exclude='.rustup' \
+      -e 'ssh -p 2237' --info=progress2 \
+      /home/origin_username \
+      server_username@x.x.x.x:/path/to/destination/folder
 ```
+
+### borg
+
+[borg](https://borgbackup.readthedocs.io/en/stable/) is a backup tool that synchronizes and deduplicates data to a remote repository. This remote repository contains snapshots that vary between each otehr only for the new modifications applied since the previous snapshot (hence why it's `deduplicating`).
+
+Initialize a new repository: `borg init --encryption=repokey "/path/to/repo"`
+
+List all backups of a specific repository: `borg list "path_to_repo_directory"`
+
+Extract a folder from a borg backup: `borg extract -v --list "repo_path"::backup_name folder_path`
+
+Delete a repository: `borg delete "/path/to/repo"`
+
+TODO: write example script
+
+### restic + backrest
+
+TODO: ?
+
+## Monitoring
+
+To monitor your servers' state (uptime, resource usage, logs, ...), a monitoring service is indispensable.
+
+[Beszel](https://beszel.dev/) is a simple, minimal and reliable way to keep track of what's happening in your homelab at any point in time.
+
+TODO: docker setup
+
+## Storage
+
+TODO: brief intro
+
+### RAID 1
+
+A `RAID 1` storage setup is useful on a small NAS, to make sure that if one disk dies, the other has a full copy of all the data.
+
+<!-- https://wiki.archlinux.org/title/RAID#Installation -->
+<!-- https://wiki.archlinux.org/title/RAID#Configure_mkinitcpio -->
+
+<!-- https://en.wikipedia.org/wiki/Comparison_of_file_systems#Limits -->
+<!-- https://en.wikipedia.org/wiki/Comparison_of_file_systems#Features -->
+
+<!-- https://wiki.archlinux.org/title/RAID#Monitoring -->
+<!-- https://wiki.archlinux.org/title/RAID#RAID_Maintenance -->
+
+<!-- FIX: DOCS: find a way to remove those excessive `- ...` -->
+
+- Add `mdadm_udev` to the `HOOKS` array of `/etc/mkinitcpio.conf`
+- Regenerate the initramfs: `sudo mkinitcpio -P`
+- Reboot
+- Partition the drives (create one `ext4` partition):
+- `sudo cfdisk /dev/sda`
+- `sudo cfdisk /dev/sdb`
+- Build the array:
+- `sudo mdadm --create --verbose --level=1 --metadata=1.2 --raid-devices=2 /dev/md/pool /dev/sda1 /dev/sdb1`
+- Update `mdadm` configuration file:
+- `su`
+- `mdadm --detail --scan >> /etc/mdadm.conf`
+- `exit`
+- Assemble the array:
+- `sudo mdadm --assemble --scan`
+- Check the array's state:
+- `sudo mdadm --detail /dev/md/pool`
+- Calculate `stride` and `stripe` width ([source](https://wiki.archlinux.org/title/RAID#Calculating_the_stride_and_stripe_width)):
+- `stride = chunk size / block size = 512KiB / 4KiB = 128KiB`
+- `stripe width = number of data disks * stride = 2 * 128 = 256`
+- Format the array with a filesystem: 
+- `sudo mkfs.ext4 -v -L pool -b 4096 -E stride=128,stripe-width=256 /dev/md/pool`
+- Mount the filesystem: 
+- `sudo mkdir -v /pool`
+- `sudo mount /dev/md/pool /pool`
+
+### RAID 5
+
+TODO: manual setup
+
+## Services
+
+TODO: brief intro
+
+Install Docker with `sudo pacman -Syu docker docker-compose`.
+
+[lazydocker](https://github.com/jesseduffield/lazydocker) lets you visualize and manage all containers running on a server through a simple an pretty TUI.
+
+Install `lazydocker` with `paru -Sua lazydocker`.
+
+### Syncthing
+
+Syncthing is a remarkably simple service that allows sharing data between devices through peer-to-peer connections.
+
+#### Install Manually
+
+Install [Syncthing](https://wiki.archlinux.org/title/Syncthing): `sudo pacman -Syu syncthing`
+
+Enable and start the syncthing daemon: `sudo systemctl enable --now syncthing@username.service`
+
+Enable access from other machines: `sed -i 's|<address>127.0.0.1:8384</address>|<address>0.0.0.0:8384</address>|g' "~/.local/state/syncthing/config.xml"`
+
+Then access the Syncthing GUI from your pc with `https://0.0.0.0:8384/` (replace 0.0.0.0 with the server ip)
+
+#### Install with Docker
+
+https://github.com/syncthing/syncthing/blob/main/README-Docker.md#docker-container-for-syncthing
+
+### Music Streaming
+
+[Navidrome](https://www.navidrome.org/) is a simple and lightweight music streaming server that can be used through its web UI or third-party apps via its Subsonic-compatible API.
+
+https://www.navidrome.org/docs/installation/docker/
+
+### RSS Feed Reader
+
+[Miniflux](https://miniflux.app/index.html) is a simple and no-nonsense RSS Feed Reader.
+
+https://miniflux.app/docs/docker.html#docker-compose
+
+### Movie Streaming
+
+[Dim](https://github.com/Dusk-Labs/dim) is a simple and pretty movie/tv-show streaming service.
+
+https://github.com/Dusk-Labs/dim?tab=readme-ov-file#running-with-docker
+
+### Minecraft Server
+
+TODO: manual setup
+
+TODO: docker-compose setup (server + backup)
+
+> [!NOTE]
+> Remember to open the `25565` port in the server's firewall with `sudo ufw allow 25565/tcp` and in the router as well.

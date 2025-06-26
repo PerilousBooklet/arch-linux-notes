@@ -7,7 +7,15 @@
 
 ```sh
 sudo pacman -Syu steam libappindicator-gtk2 lib32-libappindicator-gtk2
+paru -S steamcmd
 ```
+
+## WIP: Console-like setup
+
+> [!WARNING]
+> You need [wayland](https://archlinux.org/packages/extra/x86_64/wayland/)
+
+`STEAM_MULTIPLE_XWAYLANDS=1 gamescope W 2560 -H 1440 -r 144 -e --xwayland-count 2 --adaptive-sync - steam -gamepadui -steamdeck`
 
 ## All Other Launchers
 
@@ -29,3 +37,6 @@ paru -Syu nbtexplorer-bin
 paru -Syu rpcs3-bin rpcs3-udev
 ```
 
+## TTRPG
+
+`paru -S maptool-bin tokentool-bin`

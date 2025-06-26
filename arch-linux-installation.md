@@ -1,5 +1,14 @@
 # Arch Linux Installation Guide
 
+Some additional resources:
+
+- [Installing Arch in 2 Minutes](https://christitus.com/installing-arch-in-2-minutes/)
+- [Installation guide - ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
+- [Archlinux Installation Cheat Sheet - Pastebin.com](https://pastebin.com/GqL1DCUr)
+- [How to Install Arch Linux {Comprehensive Step-by-Step Guide}](https://phoenixnap.com/kb/arch-linux-install#ftoc-heading-11)
+- [The Arch Linux Handbook – Learn Arch Linux for Beginners](https://www.freecodecamp.org/news/how-to-install-arch-linux/#how-to-prepare-your-computer-for-installing-arch-linux)
+- [Arch Linux Installation Guide For Developers | LunaTrace](https://www.lunasec.io/docs/blog/arch-linux-installation-guide/)
+
 ## Chapter 1 - Prepare the installation
 
 ### Setup keyboard layout
@@ -417,23 +426,26 @@ sudo pacman -S nvidia-dkms nvidia-settings linux-headers
 
 ### Install a Desktop Environment or a Window Manager
 
-Cinnamon:
-```sh
-sudo pacman -S cinnamon
-```
-
 XFCE:
 ```sh
-sudo pacman -S xfce4
+sudo pacman -S xfce4 xfce4-screensaver xfce4-task-manager xfce4-panel-profiles
+```
+
+bspwm:
+```sh
+sudo pacman -Syu ?
+paru -Sua ?
 ```
 
 ### Login Manager
+
 LightDM:
 ```sh
 sudo pacman -S lightdm lightdm-gtk-greeter
 ```
 
 ### Install audio server
+
 Pulseaudio:
 ```sh
 sudo pacman -S pulseaudio pulseaudio-alsa pamixer pavucontrol alsa-utils
@@ -445,11 +457,13 @@ sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber w
 ```
 
 ### Exit chroot
+
 ```sh
 exit
 ```
 
 ### Reboot
+
 ```sh
 reboot
 ```
@@ -457,6 +471,7 @@ reboot
 ## Chapter 3 - Customize the installation
 
 Optional: if on laptop, use this networkmanager script to connect to wifi:
+
 ```sh
 #!/bin/sh
 nmcli device wifi connect "$1" password "$2"
@@ -465,12 +480,15 @@ nmcli device wifi connect "$1" password "$2"
 The first variable stands for `wifi` name and the second for the `password`.
 
 To find the wifi name:
+
 ```sh
 nmcli device wifi list
 ```
 
 ### AUR Helper
-paru:
+
+#### Paru
+
 ```sh
 sudo sudo pacman -S git
 git clone https://aur.archlinux.org/paru.git
@@ -478,14 +496,20 @@ cd paru
 makepkg -si
 ```
 
+#### Custom scripts
+
+TODO: ?
+
 ### Spice up pacman and paru
 
 Go to pacman's configuration file:
+
 ```sh
 vim /etc/pacman.conf
 ```
 
-uncomment the following:
+Uncomment the following:
+
 ```
 #Color
 #ILoveCandy
@@ -493,16 +517,19 @@ uncomment the following:
 ```
 
 Go to paru's configuration file:
+
 ```sh
 vim /etc/paru.conf
 ```
 
-uncomment the following:
+Uncomment the following:
+
 ```
 #NewsOnUpgrade
 ```
 
 ### Privileges and Authentication Management
+
 ```sh
 sudo pacman -S polkit lxsession
 touch ~/.xprofile
@@ -527,13 +554,13 @@ fi
 
 ### Window Manager Setup
 
-bspwm(x11):
+bspwm(X11):
 
 ```sh
 sudo pacman -S bspwm sxhkd rofi polybar feh dunst picom i3lock imagemagick scrot python-pywal
 ```
 
-river(wayland):
+WIP: river(Wayland):
 
 ```sh
 sudo pacman -S river waybar ?
@@ -561,6 +588,9 @@ EndSection
 ```
 
 #### Laptop
+
+<!-- https://wiki.archlinux.org/title/Touchpad_Synaptics# -->
+<!-- https://www.tuxedocomputers.com/en/Arch-Linux-and-Manjaro-on-TUXEDO-computers.tuxedo -->
 
 Enable the touchpad:
 
