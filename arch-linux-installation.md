@@ -12,38 +12,47 @@ Some additional resources:
 ## Chapter 1 - Prepare the installation
 
 ### Setup keyboard layout
+
 List all keyboard layouts:
+
 ```sh
 ls /usr/share/kbd/keymaps/**/*.map.gz
 ```
 
 Set keyboard layout:
+
 ```sh
 loadkeys it
 ```
 
 ### Change console font
+
 List all console fonts:
+
 ```sh
 ls -l /usr/share/kbd/consolefonts/
 ```
 
 Set console font:
+
 ```sh
 setfont Lat2-Terminus16
 ```
 
 ### Check UEFI
+
 ```sh
 ls /sys/firmware/efi/efivars
 ```
 
 ### Check internet connection
+
 ```sh
 ip addr show
 ```
 
 ### Configure wi-fi
+
 ```sh
 iwctl
 
@@ -59,6 +68,7 @@ exit
 ```
 
 ### Syncronize system clock with the Network Time Protocol
+
 ```sh
 timedatectl set-ntp true
 ```
@@ -66,16 +76,21 @@ timedatectl set-ntp true
 ### UEFI/GPT Partitioning
 
 #### Setup partitions on a single SSD
+
 Check SSD name and remember it (ex. /dev/sda, /dev/nvme0n1):
+
 ```sh
 fdisk -l
 ```
 
 Create two partitions:
+
 1. EFI partition: 1024MB
-2. Root partition: remaining space
+2. SWAP partition: 8192M
+3. Root partition: remaining space
 
 Run the partitioning program:
+
 ```sh
 cfdisk /dev/sda
 ```
@@ -84,38 +99,58 @@ Follow CAREFULLY the menu instructions.
 
 #### Format partitions
 
+https://wiki.archlinux.org/title/Installation_guide#Format_the_partitions
+
 ##### ext4
+
+> [!NOTE]
+> Usually `/dev/sda2` should be the swap, but I only recently created it so it's `/dev/sda3`
+
 ```sh
 mkfs.ext4 /dev/sda2
 
 mkfs.fat -F32 /dev/sda1
+
+mkswap /dev/sda3
+# TODO: "https://wiki.archlinux.org/title/Swap#Enabling_at_boot"
 
 mount /dev/sda2 /mnt
 
 mkdir -p /mnt/boot/efi
 
 mount /dev/sda1 /mnt/boot/efi
+
+swapon /dev/sda3
 ```
 
+##### ZFS
+
+?
+
 ##### Logical volumes
+
 ?
 
 ### Setup repository mirrors
+
 ```sh
 reflector --verbose --latest 10 --download-timeout 10 --country Germany --protocol https --completion-percent 100 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 ### Install base packages
+
 ```sh
 pacstrap /mnt base base-devel linux linux-lts linux-firmware man-db man-pages texinfo vi vim tmux git xterm alacritty bash-completion
 ```
 
 ### Generate file system tab
+
 ```sh
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 Check contents:
+
 ```sh
 vim /mnt/etc/fstab
 ```
@@ -123,17 +158,21 @@ vim /mnt/etc/fstab
 ## Chapter 2 - Configure the installation
 
 ### Change root into the new system
+
 ```sh
 arch-chroot /mnt /bin/bash
 ```
 
 ### Setup locale (system language)
+
 Un-comment your favorite language (es. en_US.UTF-8 UTF-8):
+
 ```sh
 vim /etc/locale.gen
 ```
 
 Generate locale configuration:
+
 ```sh
 locale-gen
 
@@ -143,33 +182,39 @@ export LANG=en_US.UTF-8
 ```
 
 ### Confirm keyboard layout
+
 ```sh
 touch /etc/vconsole.conf
 echo "KEYMAP=us" > /etc/vconsole.conf
 ```
 
 ### Set the time zone
+
 ```sh
 ln -s /usr/share/zoneinfo/Europe/Rome /etc/localtime
 ```
 
 ### Run hwclock to generate /etc/adjtime
+
 ```sh
 hwclock --systohc --utc
 ```
 
 ### Network configuration
+
 Set hostname:
 ```sh
 echo "myhostname" > /etc/hostname
 ```
 
 Add matching entries to the "hosts" file in the appropriate position (indicated below):
+
 ```sh
 vim /etc/hosts
 ```
 
 Write  into /etc/hosts the following:
+
 ```
 127.0.0.1 localhost
 ::1 localhost
@@ -177,6 +222,7 @@ Write  into /etc/hosts the following:
 ```
 
 ### Set up networking tools
+
 ```sh
 sudo pacman -S net-tools
 
@@ -192,6 +238,7 @@ systemctl enable iwd
 ```
 
 Install and enable NetworkManager:
+
 ```sh
 sudo -s
 
@@ -201,6 +248,7 @@ systemctl enable NetworkManager
 ```
 
 ### Set the root password
+
 ```sh
 passwd
 ```
@@ -208,17 +256,21 @@ passwd
 Write password
 
 ### User settings
+
 Create user:
+
 ```sh
 useradd -m -G wheel -s /bin/bash username
 ```
 
-Set user password
+Set user password:
+
 ```sh
 passwd username
 ```
 
 Enable ? permissions for user:
+
 ```sh
 export EDITOR=/usr/bin/vim && visudo
 ```
@@ -228,9 +280,11 @@ Remove comment from the line located right below the following comment: `Uncomme
 ### Bootloader setup
 
 #### GRUB
+
 (Useful to easily multi-boot different operating systems.)
 
 ##### BIOS
+
 ```sh
 sudo pacman -S grub efibootmgr os-prober
 
@@ -240,6 +294,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ##### UEFI
+
 ```sh
 sudo pacman -S grub efibootmgr os-prober
 
@@ -249,9 +304,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 #### Unified Kernel Images
+
 (Preferable when doing server installs)
 
 Create the `/etc/cmdline.d` directory:
+
 ```sh
 mkdir -v /etc/cmdline.d
 ```
@@ -259,6 +316,7 @@ mkdir -v /etc/cmdline.d
 Create the files that contain the kernel parameters:
 (you can write the parameters to a single file or have more files, each corresponding to a set of parameters, for greater readibility)
 (the files are used in alphabetical order)
+
 ```sh
 cp -v /proc/cmdline /etc/cmdline.d/00-root.conf
 ```
@@ -266,6 +324,7 @@ cp -v /proc/cmdline /etc/cmdline.d/00-root.conf
 Remove the `BOOT_IMAGE` parameter.
 
 Modify `/etc/mkinitcpio.d/linux.preset`, or the preset that you are using, with the appropriate mount point of the EFI system partition, as follows:
+
 ```
 # mkinitcpio preset file for the 'linux' package
 
@@ -291,11 +350,13 @@ default_options="--splash=/usr/share/systemd/bootctl/splash-arch.bmp"
 Do it for every installed kernel and change the name reference accordingly.
 
 Create a pacman hook to trigger a rebuild after a microcode upgrade:
+
 ```sh
 touch /etc/pacman.d/hooks/ucode.hook
 ```
 
 Write the following into `/etc/pacman.d/hooks/ucode.hook`:
+
 ```
 [Trigger]
 Operation=Install
@@ -322,12 +383,14 @@ Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /
 
 Regenerate the `initramfs` for all installed kernels:
 (In this case `esp` is `/boot/efi`)
+
 ```sh
 mkdir -p esp/EFI/Linux
 mkinitcpio -P
 ```
 
 Create UEFI boot entries with `efibootmgr`:
+
 ```sh
 efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux" --loader '\EFI\Linux\arch-linux.efi' --unicode
 efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux-lts" --loader '\EFI\Linux\arch-linux-lts.efi' --unicode
@@ -339,6 +402,7 @@ efibootmgr --create --disk /dev/sda --part 1 --label "Arch Linux - linux-lts" --
 #### UEFI
 
 Install systemd-boot to the ESP:
+
 ```sh
 bootctl --esp-path=/boot/efi install
 ```
@@ -348,39 +412,49 @@ Configure systemd-boot:
 Open `esp/loader/loader.conf` and add `default @saved` to it.
 
 ### Microcode software installation
+
 For Intel:
+
 ```sh
 sudo pacman -S intel-ucode
 ```
 
 For AMD:
+
 ```sh
 sudo pacman -S amd-ucode
 ```
 
 Refresh bootloader configuration to automatically enable microcode updates:
+
 ```sh
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Install display server
+
 X11:
+
 ```sh
 sudo pacman -S xorg xorg-xinit arandr
 ```
 
 Wayland:
+
 ```sh
 sudo pacman -S wayland
 ```
 
 ### Configure graphics drivers
+
 Enable multilib repository (uncomment):
+
 ```sh
 vim /etc/pacman.conf
 ```
 
 Refresh repositories:
+
 ```sh
 sudo pacman -Syy
 ```
@@ -388,26 +462,31 @@ sudo pacman -Syy
 Install the appropriate graphics drivers and tools (see the arch wiki for package names)
 
 Intel (for integrated GPUs):
+
 ```sh
 sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel
 ```
 
 Intel (for dedicated GPUs):
+
 ```sh
 sudo pacman -S ?
 ```
 
 AMD (for integrated GPUs):
+
 ```sh
 sudo pacman -S vulkan-radeon amdvlk
 ```
 
 AMD (for dedicated GPUs):
+
 ```sh
 sudo pacman -S mesa xf86-video-amdgpu libva-mesa-driver mesa-vdpau vulkan-radeon amdvlk radeontop corectrl
 ```
 
 NVIDIA
+
 ```sh
 sudo pacman -S nvidia nvidia-lts nvidia-settings
 ```
@@ -427,11 +506,13 @@ sudo pacman -S nvidia-dkms nvidia-settings linux-headers
 ### Install a Desktop Environment or a Window Manager
 
 XFCE:
+
 ```sh
 sudo pacman -S xfce4 xfce4-screensaver xfce4-task-manager xfce4-panel-profiles
 ```
 
 bspwm:
+
 ```sh
 sudo pacman -Syu ?
 paru -Sua ?
@@ -440,6 +521,7 @@ paru -Sua ?
 ### Login Manager
 
 LightDM:
+
 ```sh
 sudo pacman -S lightdm lightdm-gtk-greeter
 ```
@@ -447,11 +529,13 @@ sudo pacman -S lightdm lightdm-gtk-greeter
 ### Install audio server
 
 Pulseaudio:
+
 ```sh
 sudo pacman -S pulseaudio pulseaudio-alsa pamixer pavucontrol alsa-utils
 ```
 
 Pipewire:
+
 ```sh
 sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-docs wireplumber wireplumber-docs qpwgraph alsa-utils pamixer pavucontrol
 ```

@@ -43,4 +43,8 @@
 <!-- https://disconnected.systems/blog/archlinux-repo-in-a-git-repo/) -->
 <!-- https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages) -->
 
+<!-- MIRRORS -->
+<!-- https://wiki.archlinux.org/title/DeveloperWiki:NewMirrors# -->
+<!-- https://gitlab.archlinux.org/archlinux/infrastructure/-/blob/master/roles/syncrepo/files/syncrepo-template.sh -->
+
 My notes on Arch Linux.

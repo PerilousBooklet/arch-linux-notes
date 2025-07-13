@@ -19,6 +19,7 @@
   - [Arch Linux](#arch-linux)
   - [Arduino](#arduino)
   - [C/C++](#cc)
+  - [C + Raylib](#c-+-raylib)
   - [C#/F#](#c-f)
   - [Common Lisp](#common-lisp)
   - [Flashing ROMs](#flashing-roms)
@@ -40,6 +41,8 @@
   - [Web](#web)
 
 ## How to setup an isolated development environment
+
+WIP: ...
 
 We're going to use `systemd-nspawn` and an example for an isolated Ruby development environment: 
 
@@ -121,6 +124,12 @@ sudo pacman -Syu dev-tools namcap
 ### C/C++
 
 `sudo pacman -Syu gcc make cmake ninja`
+
+### C + Raylib
+
+Install required packages: `sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama`
+
+
 
 ### C# / F#
 
