@@ -48,11 +48,10 @@ read system logs for a specific special process ?:
 journalctl /usr/bin/process-name
 ```
 
-## How to solve package dependency conflicts
+## How to solve package dependency conflicts (very rare type of problem)
 
 - gather data about the conflicting packages to understand what they are, what they do and how they do it
 - try to see which dependency you can keep and which you can uninstall
-(very rare type of problem)
 
 ## Check and clean pacman cache
 
