@@ -574,7 +574,7 @@ nmcli device wifi list
 #### Paru
 
 ```sh
-sudo sudo pacman -S git
+sudo pacman -S git
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
