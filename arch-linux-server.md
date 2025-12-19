@@ -9,8 +9,6 @@ TODO: brief intro
 
 ## Remote Access
 
-TODO: brief intro
-
 The standard way of connecting to your servers in your homelab and on a VPS is through SSH.
 
 Also, a self-hosted VPN allows your smartphone and laptop to securely access your homelab's services from outside.
@@ -321,3 +319,15 @@ TODO: docker-compose setup (server + backup)
 
 > [!NOTE]
 > Remember to open the `25565` port in the server's firewall with `sudo ufw allow 25565/tcp` and in the router as well.
+
+## Wiping drives
+
+brief intro
+
+### NVME
+
+Unmount the drive with: `sudo umount /dev/nvme0n1 /path/to/mount/folder`
+
+Format the drive (ideal for reuse or resale, you need the `nvme-cli` package): `sudo nvme format /dev/nvme0n1`
+
+Check if the drive is clean: `sudo file -s /dev/nvme0n1`

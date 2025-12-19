@@ -13,6 +13,7 @@
 
 ## Table of Contents
 
+- [Base Tools](#base-tools)
 - [How to Setup an Isolated Development Environment](#how-to-setup-an-isolated-development-environment)
 - [Software Development](#software-development)
   - [Android](#android-javakotlin)
@@ -39,6 +40,31 @@
   - [SQL](#sql)
   - [Ruby](#ruby)
   - [Web](#web)
+
+## Base Tools
+
+- openssh
+- vi
+- vim
+- neovim
+- man
+- man-db
+- texinfo
+- tealdeer
+- git
+- docker
+- docker-compose
+- lazydocker (TUI dashboard for Docker)
+- tmux
+- mynav (TUI dashboard for TMUX)
+- strace
+
+- firefox
+- keepassxc
+- lite-xl
+- dbbrowser
+- dbeaver
+- httpie-desktop
 
 ## How to setup an isolated development environment
 
@@ -119,17 +145,23 @@ sudo pacman -Syu dev-tools namcap
 
 ### Arduino
 
-`paru -Syu arduino-ide-bin`
+`paru -Syu arduino-language-server`
+
+### Assembly x86_64
+
+`paru -S asm-lsp`
+
+### AWK
+
+`paru -S awk-language-server`
+
+### Bash
+
+`sudo pacman -Syu bash-language-server shellcheck`
 
 ### C/C++
 
-`sudo pacman -Syu gcc make cmake ninja`
-
-### C + Raylib
-
-Install required packages: `sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama`
-
-
+`sudo pacman -Syu gcc make cmake clang`
 
 ### C# / F#
 
@@ -139,28 +171,80 @@ dotnet tool install -g fsautocomplete
 dotnet tool install -g csharpier
 ```
 
+### Clojure
+
+`paru -S clojure-lsp-bin`
+
 ### Common Lisp
 
 `sudo pacman -S sbcl quicklisp`
+
+### Crystal
+
+`paru -S crytalline-bin`
+
+### CSS
+
+`sudo pacman -Syu vscode-css-languageserver`
+
+### D
+
+```sh
+paru -S serve-d-bin
+sudo pacman -Syu dub
+```
+
+### Dart
+
+`sudo pacman -Syu dart`
 
 ### Flashing ROMs
 
 `sudo pacman -Syu flashrom`
 
+### Elixir
+
+`paru -S elixir-ls`
+
+### Elm
+
+`paru -S elm-language-server elm-format-bin`
+
+### Erlang
+
+WIP: package still not in the AUR
+
+`paru -S erlang_ls`
+
 ### Fonts
 
 `sudo pacman -Syu fontforge birdfont gucharmap`
 
-### Godot
+### Fortran
 
-```sh
-sudo pacman -Syu godot
-paru -Syu godot3-bin godot-voxel
-```
+`paru -S fortls`
+
+### Go
+
+`sudo pacman -Syu gopls`
+
+### Groovy
+
+`paru -S groovy-language-server-git`
 
 ### Haskell
 
-`sudo pacman -Syu ghc cabal-install`
+```sh
+sudo pacman -Syu haskell-language-server
+sudo pacman -Syu ghc cabal-install
+```
+
+### HTML
+
+```sh
+sudo pacman -Syu vscode-html-languageserver
+paru -S emmet-language-server
+```
 
 ### Java
 
@@ -173,7 +257,7 @@ sudo pacman -Syu jdk-openjdk
 Set default system-wide java version:
 
 ```sh
-sudo archlinux-java set java-20-openjdk # for java 20
+sudo archlinux-java set java-25-openjdk
 ```
 
 Check installed java versions:
@@ -186,6 +270,28 @@ Install the Spring Boot CLI app:
 
 `paru -S spring-boot-cli`
 
+Install the java LSP server:
+
+`paru -S jdtls`
+
+### JSON
+
+`sudo pacman -Syu vscode-json-languageserver`
+
+### Julia
+
+Open the julia console and install the lsp server:
+
+```
+julia
+]
+add LanguageServer
+```
+
+### Kotlin
+
+`paru -S kotlin-language-server`
+
 ### LaTeX
 
 ```sh
@@ -196,15 +302,20 @@ sudo pacman -Syu texlive-most texlive-lang texstudio
 
 `sudo pacman -Syu lilypond frescobaldi`
 
+### Lisp
+
+`sudo pacman -Syu roswell`
+
 ### Lua
 
 ```sh
 sudo pacman -Syu lua
+paru -S lua-language-server-git
 ```
 
-### Matlab
+### Markdown
 
-`sudo pacman -Syu octave`
+`sudo pacman -Syu marksman`
 
 ### Minecraft
 
@@ -213,52 +324,120 @@ sudo pacman -Syu jdk8-openjdk jdk-openjdk
 paru -Syu blockbench-bin nbtexplorer fernflower-git
 ```
 
+### Nim
+
+```sh
+paru -S choosenim-bin
+choosenim stable
+nimble install nimlsp
+```
+
 ### OCaml
 
 <!-- https://ocaml.org/docs/installing-ocaml -->
 <!-- https://ocaml.org/docs/opam-switch-introduction -->
 
-Setup OCaml:
-
 ```sh
 sudo pacman -S opam
 opam init -y
 echo "test -r '/home/raffaele/.opam/opam-init/init.sh' && . '/home/raffaele/.opam/opam-init/init.sh' > /dev/null 2> /dev/null || true" >> ~/.bashrc
-```
-
-Setup platform tools:
-
-```sh
 opam install ocaml-lsp-server odoc ocamlformat utop
 opam install user-setup
 ```
+
+### Odin
+
+`paru -S odinls`
 
 ### OpenSCAD
 
 `sudo pacman -Syu openscad`
 
+### Perl
+
+`paru -S perlnavigator`
+
+### PHP
+
+`paru -S nodejs-intelephense`
+
 ### Python
 
 ```sh
-sudo pacman -Syu python python-pipx python-venv
+sudo pacman -Syu python python-pipx python-venv python-lsp-server flake8
 ```
 
 ### R
 
 ```sh
 sudo pacman -Syu r gcc-fortran
-paru -Syu rstudio-desktop-bin
+paru -S r-languageserver
 ```
 
 ### Ruby
 
 `paru -S rvm`
+`gem install ruby-lsp`
+
+### Rust
+
+`sudo pacman -Syu rustup`
+
+### Scala
+
+```sh
+paru -S jdk17-openjdk scala scala-docs scala-sources
+sudo archlinux-java set java-17-openjdk
+paru -S metals
+```
 
 ### SQL
 
-`sudo pacman -Syu sqlite postgresql dbeaver`
+```sh
+sudo pacman -Syu sqlite postgresql dbeaver
+paru -S sql-language-server
+```
 
-### Web
+### TailwindCSS
 
-<!-- html/css/js/php -->
-`?`
+`sudo pacman -Syu tailwindcss-language-server`
+
+### TeX
+
+```sh
+sudo pacman -Syu texlive-most
+paru -S texlab-bin
+sudo pacman -Syu texlive-binextra perl-yaml-tiny perl-file-homedir
+```
+
+### TOML
+
+`sudo pacman -S taplo-cli`
+
+### Typescript
+
+`sudo pacman -Syu typescript-language-server`
+
+### Typst
+
+`paru -S typst-lsp-bin`
+
+### Vala
+
+`paru -S vala-language-server`
+
+### V
+
+`paru -S v-analyzer-bin`
+
+### XML
+
+`paru -S lemminx`
+
+### Zig
+
+`sudo pacman -Syu zls`
+
+### YAML
+
+`sudo pacman -Syu yaml-language-server`
